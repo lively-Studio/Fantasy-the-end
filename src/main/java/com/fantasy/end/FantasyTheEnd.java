@@ -21,6 +21,7 @@ import com.fantasy.end.registry.ModItems;
 import com.fantasy.end.registry.ModRecipes;
 import com.fantasy.end.registry.ModStatusEffects;
 import com.fantasy.end.event.EnderPortalHandler;
+import com.fantasy.end.handler.EnderTeleportHandler;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import org.slf4j.Logger;
@@ -38,6 +39,7 @@ public class FantasyTheEnd implements ModInitializer {
         ModRecipes.init();
 
         ServerTickEvents.END_SERVER_TICK.register(new EnderPortalHandler());
+        EnderTeleportHandler.register();
 
         LOGGER.info("[幻想:末地] 模组初始化完成——末地的新篇章即将开启。");
     }

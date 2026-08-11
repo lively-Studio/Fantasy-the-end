@@ -2,6 +2,6 @@
   "itemGroup.fantasy_the_end.main": "Fantasy: The End",
   "mod.fantasy_the_end.name": "Fantasy: The End",
   "item.fantasy_the_end.purple_ender_pearl": "Purple Ender Pearl",
-  "item.fantasy_the_end.purple_ender_pearl.message": "Ender power awakened - for one hour, you can teleport without Ender Pearls and activate End Portals by standing on them.",
+  "item.fantasy_the_end.purple_ender_pearl.message": "Ender power awakened - for one hour, click any block/air with empty hand to teleport. Stand on an inactive End Portal frame to activate it directly.",
   "effect.fantasy_the_end.ender": "Ender"
 }
