@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "fantasy_the_end:block/phantom_stone_door_bottom_left"
+    "model": "fantasy_the_end:item/phantom_stone_door"
   }
 }
