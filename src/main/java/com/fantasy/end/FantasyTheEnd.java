@@ -16,6 +16,7 @@
  */
 package com.fantasy.end;
 
+import com.fantasy.end.registry.ModBlocks;
 import com.fantasy.end.registry.ModItemGroups;
 import com.fantasy.end.registry.ModItems;
 import com.fantasy.end.registry.ModRecipes;
@@ -34,6 +35,7 @@ public class FantasyTheEnd implements ModInitializer {
     @Override
     public void onInitialize() {
         ModStatusEffects.init();
+        ModBlocks.init();
         ModItems.init();
         ModItemGroups.register();
         ModRecipes.init();

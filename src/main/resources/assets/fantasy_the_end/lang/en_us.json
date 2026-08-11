@@ -2,5 +2,7 @@
   "itemGroup.fantasy_the_end.main": "Fantasy: The End",
   "mod.fantasy_the_end.name": "Fantasy: The End",
   "item.fantasy_the_end.purple_ender_pearl": "Phantom Eye",
+  "block.fantasy_the_end.ender_stone": "Ender Stone",
+  "block.fantasy_the_end.phantom_stone": "Phantom Stone",
   "effect.fantasy_the_end.ender": "Ender"
 }

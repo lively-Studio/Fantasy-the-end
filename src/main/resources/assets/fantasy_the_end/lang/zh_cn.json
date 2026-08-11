@@ -2,5 +2,7 @@
   "itemGroup.fantasy_the_end.main": "幻想:末地",
   "mod.fantasy_the_end.name": "幻想:末地",
   "item.fantasy_the_end.purple_ender_pearl": "幻影之眼",
+  "block.fantasy_the_end.ender_stone": "末影之石",
+  "block.fantasy_the_end.phantom_stone": "幻影之石",
   "effect.fantasy_the_end.ender": "末影"
 }

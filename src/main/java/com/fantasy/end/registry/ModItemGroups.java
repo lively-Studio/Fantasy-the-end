@@ -38,7 +38,11 @@ public final class ModItemGroups {
                 ItemGroup.create(ItemGroup.Row.TOP, 0)
                         .displayName(Text.translatable("itemGroup.fantasy_the_end.main"))
                         .icon(() -> new ItemStack(ModItems.PURPLE_ENDER_PEARL))
-                        .entries((displayContext, entries) -> entries.add(ModItems.PURPLE_ENDER_PEARL))
+                        .entries((displayContext, entries) -> {
+                            entries.add(ModItems.PURPLE_ENDER_PEARL);
+                            entries.add(ModItems.ENDER_STONE);
+                            entries.add(ModItems.PHANTOM_STONE);
+                        })
                         .build()
         );
     }

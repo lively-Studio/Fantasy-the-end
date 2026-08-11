@@ -18,6 +18,7 @@ package com.fantasy.end.registry;
 
 import com.fantasy.end.FantasyTheEnd;
 import com.fantasy.end.item.PurpleEnderPearlItem;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -34,6 +35,24 @@ public final class ModItems {
             Registries.ITEM,
             PURPLE_ENDER_PEARL_KEY,
             new PurpleEnderPearlItem(new Item.Settings().registryKey(PURPLE_ENDER_PEARL_KEY))
+    );
+
+    public static final RegistryKey<Item> ENDER_STONE_KEY =
+            RegistryKey.of(RegistryKeys.ITEM, Identifier.of(FantasyTheEnd.MOD_ID, "ender_stone"));
+
+    public static final BlockItem ENDER_STONE = Registry.register(
+            Registries.ITEM,
+            ENDER_STONE_KEY,
+            new BlockItem(ModBlocks.ENDER_STONE, new Item.Settings().registryKey(ENDER_STONE_KEY))
+    );
+
+    public static final RegistryKey<Item> PHANTOM_STONE_KEY =
+            RegistryKey.of(RegistryKeys.ITEM, Identifier.of(FantasyTheEnd.MOD_ID, "phantom_stone"));
+
+    public static final BlockItem PHANTOM_STONE = Registry.register(
+            Registries.ITEM,
+            PHANTOM_STONE_KEY,
+            new BlockItem(ModBlocks.PHANTOM_STONE, new Item.Settings().registryKey(PHANTOM_STONE_KEY))
     );
 
     private ModItems() {
