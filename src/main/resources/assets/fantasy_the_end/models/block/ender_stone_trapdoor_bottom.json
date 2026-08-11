@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_trapdoor_bottom",
+  "textures": {
+    "texture": "fantasy_the_end:block/ender_stone_trapdoor"
+  }
+}

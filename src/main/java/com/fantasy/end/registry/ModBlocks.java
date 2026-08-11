@@ -18,11 +18,17 @@ package com.fantasy.end.registry;
 
 import com.fantasy.end.FantasyTheEnd;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockSetType;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.DoorBlock;
+import net.minecraft.block.SlabBlock;
+import net.minecraft.block.TrapdoorBlock;
+
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 
 public final class ModBlocks {
@@ -43,6 +49,80 @@ public final class ModBlocks {
             Registries.BLOCK,
             PHANTOM_STONE_KEY,
             new Block(Block.Settings.copy(Blocks.END_STONE).registryKey(PHANTOM_STONE_KEY))
+    );
+
+    public static final RegistryKey<Block> ENDER_STONE_SLAB_KEY =
+            RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(FantasyTheEnd.MOD_ID, "ender_stone_slab"));
+
+    public static final SlabBlock ENDER_STONE_SLAB = Registry.register(
+            Registries.BLOCK,
+            ENDER_STONE_SLAB_KEY,
+            new SlabBlock(Block.Settings.copy(Blocks.END_STONE).registryKey(ENDER_STONE_SLAB_KEY))
+    );
+
+    public static final RegistryKey<Block> PHANTOM_STONE_SLAB_KEY =
+            RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(FantasyTheEnd.MOD_ID, "phantom_stone_slab"));
+
+    public static final SlabBlock PHANTOM_STONE_SLAB = Registry.register(
+            Registries.BLOCK,
+            PHANTOM_STONE_SLAB_KEY,
+            new SlabBlock(Block.Settings.copy(Blocks.END_STONE).registryKey(PHANTOM_STONE_SLAB_KEY))
+    );
+
+    public static final RegistryKey<Block> ENDER_STONE_DOOR_KEY =
+            RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(FantasyTheEnd.MOD_ID, "ender_stone_door"));
+
+    public static final DoorBlock ENDER_STONE_DOOR = Registry.register(
+            Registries.BLOCK,
+            ENDER_STONE_DOOR_KEY,
+            new DoorBlock(BlockSetType.STONE,
+                    Block.Settings.copy(Blocks.END_STONE)
+                    .nonOpaque()
+                    .strength(3.0F)
+                    .sounds(BlockSoundGroup.STONE)
+                    .registryKey(ENDER_STONE_DOOR_KEY))
+    );
+
+    public static final RegistryKey<Block> PHANTOM_STONE_DOOR_KEY =
+            RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(FantasyTheEnd.MOD_ID, "phantom_stone_door"));
+
+    public static final DoorBlock PHANTOM_STONE_DOOR = Registry.register(
+            Registries.BLOCK,
+            PHANTOM_STONE_DOOR_KEY,
+            new DoorBlock(BlockSetType.STONE,
+                    Block.Settings.copy(Blocks.END_STONE)
+                    .nonOpaque()
+                    .strength(3.0F)
+                    .sounds(BlockSoundGroup.STONE)
+                    .registryKey(PHANTOM_STONE_DOOR_KEY))
+    );
+
+    public static final RegistryKey<Block> ENDER_STONE_TRAPDOOR_KEY =
+            RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(FantasyTheEnd.MOD_ID, "ender_stone_trapdoor"));
+
+    public static final TrapdoorBlock ENDER_STONE_TRAPDOOR = Registry.register(
+            Registries.BLOCK,
+            ENDER_STONE_TRAPDOOR_KEY,
+            new TrapdoorBlock(BlockSetType.STONE,
+                    Block.Settings.copy(Blocks.END_STONE)
+                    .nonOpaque()
+                    .strength(3.0F)
+                    .sounds(BlockSoundGroup.STONE)
+                    .registryKey(ENDER_STONE_TRAPDOOR_KEY))
+    );
+
+    public static final RegistryKey<Block> PHANTOM_STONE_TRAPDOOR_KEY =
+            RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(FantasyTheEnd.MOD_ID, "phantom_stone_trapdoor"));
+
+    public static final TrapdoorBlock PHANTOM_STONE_TRAPDOOR = Registry.register(
+            Registries.BLOCK,
+            PHANTOM_STONE_TRAPDOOR_KEY,
+            new TrapdoorBlock(BlockSetType.STONE,
+                    Block.Settings.copy(Blocks.END_STONE)
+                    .nonOpaque()
+                    .strength(3.0F)
+                    .sounds(BlockSoundGroup.STONE)
+                    .registryKey(PHANTOM_STONE_TRAPDOOR_KEY))
     );
 
     private ModBlocks() {

@@ -42,6 +42,12 @@ public final class ModItemGroups {
                             entries.add(ModItems.PURPLE_ENDER_PEARL);
                             entries.add(ModItems.ENDER_STONE);
                             entries.add(ModItems.PHANTOM_STONE);
+                            entries.add(ModItems.ENDER_STONE_SLAB);
+                            entries.add(ModItems.PHANTOM_STONE_SLAB);
+                            entries.add(ModItems.ENDER_STONE_DOOR);
+                            entries.add(ModItems.PHANTOM_STONE_DOOR);
+                            entries.add(ModItems.ENDER_STONE_TRAPDOOR);
+                            entries.add(ModItems.PHANTOM_STONE_TRAPDOOR);
                         })
                         .build()
         );

@@ -55,6 +55,60 @@ public final class ModItems {
             new BlockItem(ModBlocks.PHANTOM_STONE, new Item.Settings().registryKey(PHANTOM_STONE_KEY))
     );
 
+    public static final RegistryKey<Item> ENDER_STONE_SLAB_KEY =
+            RegistryKey.of(RegistryKeys.ITEM, Identifier.of(FantasyTheEnd.MOD_ID, "ender_stone_slab"));
+
+    public static final BlockItem ENDER_STONE_SLAB = Registry.register(
+            Registries.ITEM,
+            ENDER_STONE_SLAB_KEY,
+            new BlockItem(ModBlocks.ENDER_STONE_SLAB, new Item.Settings().registryKey(ENDER_STONE_SLAB_KEY))
+    );
+
+    public static final RegistryKey<Item> PHANTOM_STONE_SLAB_KEY =
+            RegistryKey.of(RegistryKeys.ITEM, Identifier.of(FantasyTheEnd.MOD_ID, "phantom_stone_slab"));
+
+    public static final BlockItem PHANTOM_STONE_SLAB = Registry.register(
+            Registries.ITEM,
+            PHANTOM_STONE_SLAB_KEY,
+            new BlockItem(ModBlocks.PHANTOM_STONE_SLAB, new Item.Settings().registryKey(PHANTOM_STONE_SLAB_KEY))
+    );
+
+    public static final RegistryKey<Item> ENDER_STONE_DOOR_KEY =
+            RegistryKey.of(RegistryKeys.ITEM, Identifier.of(FantasyTheEnd.MOD_ID, "ender_stone_door"));
+
+    public static final BlockItem ENDER_STONE_DOOR = Registry.register(
+            Registries.ITEM,
+            ENDER_STONE_DOOR_KEY,
+            new BlockItem(ModBlocks.ENDER_STONE_DOOR, new Item.Settings().registryKey(ENDER_STONE_DOOR_KEY))
+    );
+
+    public static final RegistryKey<Item> PHANTOM_STONE_DOOR_KEY =
+            RegistryKey.of(RegistryKeys.ITEM, Identifier.of(FantasyTheEnd.MOD_ID, "phantom_stone_door"));
+
+    public static final BlockItem PHANTOM_STONE_DOOR = Registry.register(
+            Registries.ITEM,
+            PHANTOM_STONE_DOOR_KEY,
+            new BlockItem(ModBlocks.PHANTOM_STONE_DOOR, new Item.Settings().registryKey(PHANTOM_STONE_DOOR_KEY))
+    );
+
+    public static final RegistryKey<Item> ENDER_STONE_TRAPDOOR_KEY =
+            RegistryKey.of(RegistryKeys.ITEM, Identifier.of(FantasyTheEnd.MOD_ID, "ender_stone_trapdoor"));
+
+    public static final BlockItem ENDER_STONE_TRAPDOOR = Registry.register(
+            Registries.ITEM,
+            ENDER_STONE_TRAPDOOR_KEY,
+            new BlockItem(ModBlocks.ENDER_STONE_TRAPDOOR, new Item.Settings().registryKey(ENDER_STONE_TRAPDOOR_KEY))
+    );
+
+    public static final RegistryKey<Item> PHANTOM_STONE_TRAPDOOR_KEY =
+            RegistryKey.of(RegistryKeys.ITEM, Identifier.of(FantasyTheEnd.MOD_ID, "phantom_stone_trapdoor"));
+
+    public static final BlockItem PHANTOM_STONE_TRAPDOOR = Registry.register(
+            Registries.ITEM,
+            PHANTOM_STONE_TRAPDOOR_KEY,
+            new BlockItem(ModBlocks.PHANTOM_STONE_TRAPDOOR, new Item.Settings().registryKey(PHANTOM_STONE_TRAPDOOR_KEY))
+    );
+
     private ModItems() {
     }
 

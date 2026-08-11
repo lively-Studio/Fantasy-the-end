@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_bottom_left",
+  "textures": {
+    "bottom": "fantasy_the_end:block/phantom_stone_door_bottom",
+    "top": "fantasy_the_end:block/phantom_stone_door_top"
+  }
+}
