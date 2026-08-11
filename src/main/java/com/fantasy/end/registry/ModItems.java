@@ -23,7 +23,6 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
 
 public final class ModItems {
@@ -34,13 +33,13 @@ public final class ModItems {
     public static final Item PURPLE_ENDER_PEARL = Registry.register(
             Registries.ITEM,
             PURPLE_ENDER_PEARL_KEY,
-            new PurpleEnderPearlItem(new Item.Settings())
+            new PurpleEnderPearlItem(new Item.Settings().registryKey(PURPLE_ENDER_PEARL_KEY))
     );
 
     private ModItems() {
     }
 
     public static void init() {
-        FantasyTheEnd.LOGGER.info("[幻想:末地] 注册物品完成。");
+        FantasyTheEnd.LOGGER.info("[幻想:末地/Fantasy:The End] 注册物品完成。");
     }
 }
