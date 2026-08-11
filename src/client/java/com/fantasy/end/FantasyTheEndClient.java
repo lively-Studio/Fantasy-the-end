@@ -19,15 +19,15 @@ package com.fantasy.end;
 import com.fantasy.end.registry.ModBlocks;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
-import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.BlockRenderLayer;
 
 public class FantasyTheEndClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        BlockRenderLayerMap.putBlock(ModBlocks.ENDER_STONE_DOOR, RenderLayer.getCutout());
-        BlockRenderLayerMap.putBlock(ModBlocks.PHANTOM_STONE_DOOR, RenderLayer.getCutout());
-        BlockRenderLayerMap.putBlock(ModBlocks.ENDER_STONE_TRAPDOOR, RenderLayer.getCutout());
-        BlockRenderLayerMap.putBlock(ModBlocks.PHANTOM_STONE_TRAPDOOR, RenderLayer.getCutout());
+        BlockRenderLayerMap.putBlock(ModBlocks.ENDER_STONE_DOOR, BlockRenderLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(ModBlocks.PHANTOM_STONE_DOOR, BlockRenderLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(ModBlocks.ENDER_STONE_TRAPDOOR, BlockRenderLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(ModBlocks.PHANTOM_STONE_TRAPDOOR, BlockRenderLayer.CUTOUT);
 
         FantasyTheEnd.LOGGER.info("[幻想:末地] 客户端初始化完成。");
     }
