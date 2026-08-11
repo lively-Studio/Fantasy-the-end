@@ -16,7 +16,13 @@
  */
 package com.fantasy.end;
 
+import com.fantasy.end.registry.ModItemGroups;
+import com.fantasy.end.registry.ModItems;
+import com.fantasy.end.registry.ModRecipes;
+import com.fantasy.end.registry.ModStatusEffects;
+import com.fantasy.end.event.EnderPortalHandler;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,6 +32,13 @@ public class FantasyTheEnd implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        LOGGER.info("[幻想:末地] 模组正在初始化——末地的新篇章即将开启。");
+        ModStatusEffects.init();
+        ModItems.init();
+        ModItemGroups.register();
+        ModRecipes.init();
+
+        ServerTickEvents.END_SERVER_TICK.register(new EnderPortalHandler());
+
+        LOGGER.info("[幻想:末地] 模组初始化完成——末地的新篇章即将开启。");
     }
 }

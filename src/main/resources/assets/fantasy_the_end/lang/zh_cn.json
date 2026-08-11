@@ -1,4 +1,7 @@
 {
   "itemGroup.fantasy_the_end.main": "幻想:末地",
-  "mod.fantasy_the_end.name": "幻想:末地"
+  "mod.fantasy_the_end.name": "幻想:末地",
+  "item.fantasy_the_end.purple_ender_pearl": "紫色末影之眼",
+  "item.fantasy_the_end.purple_ender_pearl.message": "末影之力已觉醒——一小时内，你无需末影之眼即可传送，且站在未激活的末地传送门上可直接激活。",
+  "effect.fantasy_the_end.ender": "末影"
 }

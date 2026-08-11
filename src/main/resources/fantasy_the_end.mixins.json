@@ -3,7 +3,9 @@
   "minVersion": "0.8",
   "package": "com.fantasy.end.mixin",
   "compatibilityLevel": "JAVA_21",
-  "mixins": [],
+  "mixins": [
+    "EnderPearlItemMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   }

@@ -1,0 +1,55 @@
+/*
+ * Copyright (C) 2026 cangcang
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+package com.fantasy.end.item;
+
+import com.fantasy.end.registry.ModStatusEffects;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.world.World;
+
+public class PurpleEnderPearlItem extends Item {
+
+    private static final int EFFECT_DURATION = 20 * 60 * 60;
+
+    public PurpleEnderPearlItem(Settings settings) {
+        super(settings);
+    }
+
+    @Override
+    public ActionResult use(World world, PlayerEntity user, Hand hand) {
+        ItemStack stack = user.getStackInHand(hand);
+        if (!world.isClient()) {
+            StatusEffectInstance effect = new StatusEffectInstance(
+                    ModStatusEffects.ENDER,
+                    EFFECT_DURATION,
+                    0,
+                    false,
+                    true,
+                    true
+            );
+            user.addStatusEffect(effect);
+            user.sendMessage(Text.translatable("item.fantasy_the_end.purple_ender_pearl.message"), true);
+            stack.decrement(1);
+        }
+        return ActionResult.CONSUME;
+    }
+}
