@@ -22,3 +22,11 @@ classes/
 run/
 *.jar
 !gradle/wrapper/gradle-wrapper.jar
+
+# 图像工程文件（仅保留导出的 PNG）
+*.xcf
+*.psd
+
+# 临时日志/崩溃报告
+latest.log
+crash-*.txt
