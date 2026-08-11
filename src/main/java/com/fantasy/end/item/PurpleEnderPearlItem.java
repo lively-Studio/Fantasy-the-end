@@ -21,7 +21,6 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
@@ -47,7 +46,6 @@ public class PurpleEnderPearlItem extends Item {
                     true
             );
             user.addStatusEffect(effect);
-            user.sendMessage(Text.translatable("item.fantasy_the_end.purple_ender_pearl.message"), true);
             stack.decrement(1);
         }
         return ActionResult.CONSUME;
