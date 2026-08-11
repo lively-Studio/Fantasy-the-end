@@ -12,6 +12,7 @@
     "sources": "https://github.com/cangcang/fantasy-the-end"
   },
   "license": "GPL-3.0",
+  "icon": "icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
