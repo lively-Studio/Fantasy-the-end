@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "fantasy_the_end",
+  "version": "${version}",
+  "name": "Fantasy: The End",
+  "description": "一个不可能到来的末地更新——为玩家带来幻想中的末地维度扩展。",
+  "authors": [
+    "cangcang"
+  ],
+  "contact": {
+    "homepage": "https://github.com/cangcang/fantasy-the-end",
+    "sources": "https://github.com/cangcang/fantasy-the-end"
+  },
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.fantasy.end.FantasyTheEnd"
+    ],
+    "client": [
+      "com.fantasy.end.FantasyTheEndClient"
+    ]
+  },
+  "mixins": [
+    "fantasy_the_end.mixins.json",
+    {
+      "config": "fantasy_the_end.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=0.18.4",
+    "minecraft": "~1.21.11",
+    "java": ">=21",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "modmenu": "*"
+  }
+}
