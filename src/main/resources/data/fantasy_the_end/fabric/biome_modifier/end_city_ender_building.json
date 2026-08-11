@@ -1,6 +1,0 @@
-{
-  "type": "fabric:add",
-  "biomes": "#minecraft:has_structure/end_city",
-  "features": [],
-  "structures": ["fantasy_the_end:end_city_ender_building"]
-}
