@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/button_inventory",
+  "textures": {
+    "texture": "fantasy_the_end:block/phantom_stone"
+  }
+}

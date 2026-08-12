@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/pressure_plate_up",
+  "textures": {
+    "texture": "fantasy_the_end:block/ender_stone"
+  }
+}

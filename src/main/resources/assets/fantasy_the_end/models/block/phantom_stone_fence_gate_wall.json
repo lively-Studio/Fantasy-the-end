@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_fence_gate_wall",
+  "textures": {
+    "texture": "fantasy_the_end:block/phantom_stone"
+  }
+}

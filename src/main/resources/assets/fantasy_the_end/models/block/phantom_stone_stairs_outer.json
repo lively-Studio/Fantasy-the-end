@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "fantasy_the_end:block/phantom_stone",
+    "top": "fantasy_the_end:block/phantom_stone",
+    "side": "fantasy_the_end:block/phantom_stone"
+  }
+}

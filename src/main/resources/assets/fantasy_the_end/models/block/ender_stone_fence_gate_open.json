@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_fence_gate_open",
+  "textures": {
+    "texture": "fantasy_the_end:block/ender_stone"
+  }
+}

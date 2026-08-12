@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/button",
+  "textures": {
+    "texture": "fantasy_the_end:block/phantom_stone"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "fantasy_the_end:block/ender_stone"
+  }
+}
