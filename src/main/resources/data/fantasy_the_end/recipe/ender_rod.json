@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "tools",
+  "ingredients": [
+    "minecraft:blaze_rod",
+    "fantasy_the_end:ender_stone"
+  ],
+  "result": {
+    "count": 1,
+    "id": "fantasy_the_end:ender_rod"
+  }
+}

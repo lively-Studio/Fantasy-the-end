@@ -37,6 +37,24 @@ public final class ModItems {
             new PurpleEnderPearlItem(new Item.Settings().registryKey(PURPLE_ENDER_PEARL_KEY))
     );
 
+    public static final RegistryKey<Item> ENDER_ROD_KEY =
+            RegistryKey.of(RegistryKeys.ITEM, Identifier.of(FantasyTheEnd.MOD_ID, "ender_rod"));
+
+    public static final Item ENDER_ROD = Registry.register(
+            Registries.ITEM,
+            ENDER_ROD_KEY,
+            new Item(new Item.Settings().registryKey(ENDER_ROD_KEY))
+    );
+
+    public static final RegistryKey<Item> PHANTOM_ROD_KEY =
+            RegistryKey.of(RegistryKeys.ITEM, Identifier.of(FantasyTheEnd.MOD_ID, "phantom_rod"));
+
+    public static final Item PHANTOM_ROD = Registry.register(
+            Registries.ITEM,
+            PHANTOM_ROD_KEY,
+            new Item(new Item.Settings().registryKey(PHANTOM_ROD_KEY))
+    );
+
     public static final RegistryKey<Item> ENDER_ORE_KEY =
             RegistryKey.of(RegistryKeys.ITEM, Identifier.of(FantasyTheEnd.MOD_ID, "ender_ore"));
 

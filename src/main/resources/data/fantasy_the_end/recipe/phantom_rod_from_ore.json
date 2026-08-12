@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "tools",
+  "ingredients": [
+    "fantasy_the_end:ender_rod",
+    "fantasy_the_end:phantom_ore"
+  ],
+  "result": {
+    "count": 1,
+    "id": "fantasy_the_end:phantom_rod"
+  }
+}

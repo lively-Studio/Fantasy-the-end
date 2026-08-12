@@ -48,6 +48,8 @@ public final class ModItemGroups {
                             entries.add(ModItems.PHANTOM_STONE);
                             entries.add(ModItems.ENDER_STONE_SLAB);
                             entries.add(ModItems.PHANTOM_STONE_SLAB);
+                            entries.add(ModItems.ENDER_ROD);
+                            entries.add(ModItems.PHANTOM_ROD);
                             entries.add(ModItems.ENDER_DOOR);
                             entries.add(ModItems.PHANTOM_DOOR);
                             entries.add(ModItems.ENDER_TRAPDOOR);
