@@ -34,7 +34,7 @@ public final class ModArmorMaterials {
 
     public static final TagKey<Item> ENDER_REPAIR_TAG = TagKey.of(RegistryKeys.ITEM, Identifier.of(FantasyTheEnd.MOD_ID, "ender_armor_repair_materials"));
 
-    public static final RegistryKey<EquipmentAsset> ENDER_TRIM_KEY = EquipmentAssetKeys.register(FantasyTheEnd.MOD_ID + ":" + "ender");
+    public static final RegistryKey<EquipmentAsset> ENDER_TRIM_KEY = RegistryKey.of(EquipmentAssetKeys.REGISTRY_KEY, Identifier.of(FantasyTheEnd.MOD_ID, "ender"));
 
     public static final ArmorMaterial ENDER = new ArmorMaterial(
             20,
@@ -54,7 +54,7 @@ public final class ModArmorMaterials {
 
     public static final TagKey<Item> PHANTOM_REPAIR_TAG = TagKey.of(RegistryKeys.ITEM, Identifier.of(FantasyTheEnd.MOD_ID, "phantom_armor_repair_materials"));
 
-    public static final RegistryKey<EquipmentAsset> PHANTOM_TRIM_KEY = EquipmentAssetKeys.register(FantasyTheEnd.MOD_ID + ":" + "phantom");
+    public static final RegistryKey<EquipmentAsset> PHANTOM_TRIM_KEY = RegistryKey.of(EquipmentAssetKeys.REGISTRY_KEY, Identifier.of(FantasyTheEnd.MOD_ID, "phantom"));
 
     public static final ArmorMaterial PHANTOM = new ArmorMaterial(
             20,
