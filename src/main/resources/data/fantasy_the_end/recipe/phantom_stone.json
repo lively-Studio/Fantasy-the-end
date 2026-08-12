@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    "fantasy_the_end:phantom_ore",
+    "fantasy_the_end:phantom_ore",
+    "fantasy_the_end:phantom_ore",
+    "fantasy_the_end:phantom_ore"
+  ],
+  "result": {
+    "count": 1,
+    "id": "fantasy_the_end:phantom_stone"
+  }
+}

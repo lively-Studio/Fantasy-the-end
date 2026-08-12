@@ -69,6 +69,42 @@ public final class ModBlocks {
             new SlabBlock(Block.Settings.copy(Blocks.END_STONE).registryKey(PHANTOM_SLAB_KEY))
     );
 
+    public static final RegistryKey<Block> ENDER_STONE_KEY =
+            RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(FantasyTheEnd.MOD_ID, "ender_stone"));
+
+    public static final Block ENDER_STONE = Registry.register(
+            Registries.BLOCK,
+            ENDER_STONE_KEY,
+            new Block(Block.Settings.copy(Blocks.END_STONE).registryKey(ENDER_STONE_KEY))
+    );
+
+    public static final RegistryKey<Block> PHANTOM_STONE_KEY =
+            RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(FantasyTheEnd.MOD_ID, "phantom_stone"));
+
+    public static final Block PHANTOM_STONE = Registry.register(
+            Registries.BLOCK,
+            PHANTOM_STONE_KEY,
+            new Block(Block.Settings.copy(Blocks.END_STONE).registryKey(PHANTOM_STONE_KEY))
+    );
+
+    public static final RegistryKey<Block> ENDER_STONE_SLAB_KEY =
+            RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(FantasyTheEnd.MOD_ID, "ender_stone_slab"));
+
+    public static final SlabBlock ENDER_STONE_SLAB = Registry.register(
+            Registries.BLOCK,
+            ENDER_STONE_SLAB_KEY,
+            new SlabBlock(Block.Settings.copy(Blocks.END_STONE).registryKey(ENDER_STONE_SLAB_KEY))
+    );
+
+    public static final RegistryKey<Block> PHANTOM_STONE_SLAB_KEY =
+            RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(FantasyTheEnd.MOD_ID, "phantom_stone_slab"));
+
+    public static final SlabBlock PHANTOM_STONE_SLAB = Registry.register(
+            Registries.BLOCK,
+            PHANTOM_STONE_SLAB_KEY,
+            new SlabBlock(Block.Settings.copy(Blocks.END_STONE).registryKey(PHANTOM_STONE_SLAB_KEY))
+    );
+
     public static final RegistryKey<Block> ENDER_DOOR_KEY =
             RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(FantasyTheEnd.MOD_ID, "ender_door"));
 
