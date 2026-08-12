@@ -1,0 +1,15 @@
+{
+  "structures": [
+    {
+      "structure": "fantasy_the_end:end_city_ender_building",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 5248973,
+    "spacing": 24,
+    "separation": 8,
+    "spread_type": "linear"
+  }
+}
