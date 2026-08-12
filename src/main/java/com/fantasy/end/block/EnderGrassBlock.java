@@ -16,19 +16,27 @@
  */
 package com.fantasy.end.block;
 
+import com.fantasy.end.FantasyTheEnd;
 import com.fantasy.end.registry.ModBlocks;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.Fertilizable;
 import net.minecraft.block.PlantBlock;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.registry.Registries;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
+import net.minecraft.world.WorldView;
 
-public class EnderGrassBlock extends PlantBlock {
+public class EnderGrassBlock extends PlantBlock implements Fertilizable {
 
     public static final MapCodec<EnderGrassBlock> CODEC = Block.createCodec(EnderGrassBlock::new);
 
@@ -55,5 +63,30 @@ public class EnderGrassBlock extends PlantBlock {
                 || floor.isOf(ModBlocks.PHANTOM_STONE)
                 || floor.isOf(ModBlocks.ENDER_ORE)
                 || floor.isOf(ModBlocks.PHANTOM_ORE);
+    }
+
+    @Override
+    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
+        return true;
+    }
+
+    @Override
+    public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
+        return true;
+    }
+
+    @Override
+    public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
+        // 10% 概率催生新的晶体草
+        if (random.nextInt(10) == 0) {
+            Block crystalGrass = Registries.BLOCK.get(Identifier.of(FantasyTheEnd.MOD_ID, "crystal_grass"));
+            for (int i = 0; i < 8; i++) {
+                BlockPos target = pos.add(random.nextInt(3) - 1, random.nextInt(2) - random.nextInt(2), random.nextInt(3) - 1);
+                if (world.getBlockState(target).isAir()
+                        && crystalGrass.getDefaultState().canPlaceAt(world, target)) {
+                    world.setBlockState(target, crystalGrass.getDefaultState(), Block.NOTIFY_ALL);
+                }
+            }
+        }
     }
 }
