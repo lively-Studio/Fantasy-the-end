@@ -1,5 +1,0 @@
-{
-  "type": "fabric:remove",
-  "biomes": "#minecraft:has_structure/end_city",
-  "structures": ["minecraft:end_city"]
-}

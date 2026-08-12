@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/template_trapdoor_open",
-  "textures": {
-    "texture": "fantasy_the_end:block/ender_stone_trapdoor"
-  },
-  "render_type": "minecraft:cutout"
-}

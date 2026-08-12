@@ -40,14 +40,14 @@ public final class ModItemGroups {
                         .icon(() -> new ItemStack(ModItems.PURPLE_ENDER_PEARL))
                         .entries((displayContext, entries) -> {
                             entries.add(ModItems.PURPLE_ENDER_PEARL);
-                            entries.add(ModItems.ENDER_STONE);
-                            entries.add(ModItems.PHANTOM_STONE);
-                            entries.add(ModItems.ENDER_STONE_SLAB);
-                            entries.add(ModItems.PHANTOM_STONE_SLAB);
-                            entries.add(ModItems.ENDER_STONE_DOOR);
-                            entries.add(ModItems.PHANTOM_STONE_DOOR);
-                            entries.add(ModItems.ENDER_STONE_TRAPDOOR);
-                            entries.add(ModItems.PHANTOM_STONE_TRAPDOOR);
+                            entries.add(ModItems.ENDER_ORE);
+                            entries.add(ModItems.PHANTOM_ORE);
+                            entries.add(ModItems.ENDER_ORE_SLAB);
+                            entries.add(ModItems.PHANTOM_ORE_SLAB);
+                            entries.add(ModItems.ENDER_ORE_DOOR);
+                            entries.add(ModItems.PHANTOM_ORE_DOOR);
+                            entries.add(ModItems.ENDER_ORE_TRAPDOOR);
+                            entries.add(ModItems.PHANTOM_ORE_TRAPDOOR);
                         })
                         .build()
         );

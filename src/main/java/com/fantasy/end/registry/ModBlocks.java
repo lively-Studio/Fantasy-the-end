@@ -33,96 +33,96 @@ import net.minecraft.util.Identifier;
 
 public final class ModBlocks {
 
-    public static final RegistryKey<Block> ENDER_STONE_KEY =
-            RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(FantasyTheEnd.MOD_ID, "ender_stone"));
+    public static final RegistryKey<Block> ENDER_ORE_KEY =
+            RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(FantasyTheEnd.MOD_ID, "ender_ore"));
 
-    public static final Block ENDER_STONE = Registry.register(
+    public static final Block ENDER_ORE = Registry.register(
             Registries.BLOCK,
-            ENDER_STONE_KEY,
-            new Block(Block.Settings.copy(Blocks.END_STONE).registryKey(ENDER_STONE_KEY))
+            ENDER_ORE_KEY,
+            new Block(Block.Settings.copy(Blocks.END_STONE).registryKey(ENDER_ORE_KEY))
     );
 
-    public static final RegistryKey<Block> PHANTOM_STONE_KEY =
-            RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(FantasyTheEnd.MOD_ID, "phantom_stone"));
+    public static final RegistryKey<Block> PHANTOM_ORE_KEY =
+            RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(FantasyTheEnd.MOD_ID, "phantom_ore"));
 
-    public static final Block PHANTOM_STONE = Registry.register(
+    public static final Block PHANTOM_ORE = Registry.register(
             Registries.BLOCK,
-            PHANTOM_STONE_KEY,
-            new Block(Block.Settings.copy(Blocks.END_STONE).registryKey(PHANTOM_STONE_KEY))
+            PHANTOM_ORE_KEY,
+            new Block(Block.Settings.copy(Blocks.END_STONE).registryKey(PHANTOM_ORE_KEY))
     );
 
-    public static final RegistryKey<Block> ENDER_STONE_SLAB_KEY =
-            RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(FantasyTheEnd.MOD_ID, "ender_stone_slab"));
+    public static final RegistryKey<Block> ENDER_ORE_SLAB_KEY =
+            RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(FantasyTheEnd.MOD_ID, "ender_ore_slab"));
 
-    public static final SlabBlock ENDER_STONE_SLAB = Registry.register(
+    public static final SlabBlock ENDER_ORE_SLAB = Registry.register(
             Registries.BLOCK,
-            ENDER_STONE_SLAB_KEY,
-            new SlabBlock(Block.Settings.copy(Blocks.END_STONE).registryKey(ENDER_STONE_SLAB_KEY))
+            ENDER_ORE_SLAB_KEY,
+            new SlabBlock(Block.Settings.copy(Blocks.END_STONE).registryKey(ENDER_ORE_SLAB_KEY))
     );
 
-    public static final RegistryKey<Block> PHANTOM_STONE_SLAB_KEY =
-            RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(FantasyTheEnd.MOD_ID, "phantom_stone_slab"));
+    public static final RegistryKey<Block> PHANTOM_ORE_SLAB_KEY =
+            RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(FantasyTheEnd.MOD_ID, "phantom_ore_slab"));
 
-    public static final SlabBlock PHANTOM_STONE_SLAB = Registry.register(
+    public static final SlabBlock PHANTOM_ORE_SLAB = Registry.register(
             Registries.BLOCK,
-            PHANTOM_STONE_SLAB_KEY,
-            new SlabBlock(Block.Settings.copy(Blocks.END_STONE).registryKey(PHANTOM_STONE_SLAB_KEY))
+            PHANTOM_ORE_SLAB_KEY,
+            new SlabBlock(Block.Settings.copy(Blocks.END_STONE).registryKey(PHANTOM_ORE_SLAB_KEY))
     );
 
-    public static final RegistryKey<Block> ENDER_STONE_DOOR_KEY =
-            RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(FantasyTheEnd.MOD_ID, "ender_stone_door"));
+    public static final RegistryKey<Block> ENDER_ORE_DOOR_KEY =
+            RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(FantasyTheEnd.MOD_ID, "ender_ore_door"));
 
-    public static final DoorBlock ENDER_STONE_DOOR = Registry.register(
+    public static final DoorBlock ENDER_ORE_DOOR = Registry.register(
             Registries.BLOCK,
-            ENDER_STONE_DOOR_KEY,
+            ENDER_ORE_DOOR_KEY,
             new DoorBlock(BlockSetType.STONE,
                     Block.Settings.copy(Blocks.END_STONE)
                     .nonOpaque()
                     .strength(3.0F)
                     .sounds(BlockSoundGroup.STONE)
-                    .registryKey(ENDER_STONE_DOOR_KEY))
+                    .registryKey(ENDER_ORE_DOOR_KEY))
     );
 
-    public static final RegistryKey<Block> PHANTOM_STONE_DOOR_KEY =
-            RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(FantasyTheEnd.MOD_ID, "phantom_stone_door"));
+    public static final RegistryKey<Block> PHANTOM_ORE_DOOR_KEY =
+            RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(FantasyTheEnd.MOD_ID, "phantom_ore_door"));
 
-    public static final DoorBlock PHANTOM_STONE_DOOR = Registry.register(
+    public static final DoorBlock PHANTOM_ORE_DOOR = Registry.register(
             Registries.BLOCK,
-            PHANTOM_STONE_DOOR_KEY,
+            PHANTOM_ORE_DOOR_KEY,
             new DoorBlock(BlockSetType.STONE,
                     Block.Settings.copy(Blocks.END_STONE)
                     .nonOpaque()
                     .strength(3.0F)
                     .sounds(BlockSoundGroup.STONE)
-                    .registryKey(PHANTOM_STONE_DOOR_KEY))
+                    .registryKey(PHANTOM_ORE_DOOR_KEY))
     );
 
-    public static final RegistryKey<Block> ENDER_STONE_TRAPDOOR_KEY =
-            RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(FantasyTheEnd.MOD_ID, "ender_stone_trapdoor"));
+    public static final RegistryKey<Block> ENDER_ORE_TRAPDOOR_KEY =
+            RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(FantasyTheEnd.MOD_ID, "ender_ore_trapdoor"));
 
-    public static final TrapdoorBlock ENDER_STONE_TRAPDOOR = Registry.register(
+    public static final TrapdoorBlock ENDER_ORE_TRAPDOOR = Registry.register(
             Registries.BLOCK,
-            ENDER_STONE_TRAPDOOR_KEY,
+            ENDER_ORE_TRAPDOOR_KEY,
             new TrapdoorBlock(BlockSetType.STONE,
                     Block.Settings.copy(Blocks.END_STONE)
                     .nonOpaque()
                     .strength(3.0F)
                     .sounds(BlockSoundGroup.STONE)
-                    .registryKey(ENDER_STONE_TRAPDOOR_KEY))
+                    .registryKey(ENDER_ORE_TRAPDOOR_KEY))
     );
 
-    public static final RegistryKey<Block> PHANTOM_STONE_TRAPDOOR_KEY =
-            RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(FantasyTheEnd.MOD_ID, "phantom_stone_trapdoor"));
+    public static final RegistryKey<Block> PHANTOM_ORE_TRAPDOOR_KEY =
+            RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(FantasyTheEnd.MOD_ID, "phantom_ore_trapdoor"));
 
-    public static final TrapdoorBlock PHANTOM_STONE_TRAPDOOR = Registry.register(
+    public static final TrapdoorBlock PHANTOM_ORE_TRAPDOOR = Registry.register(
             Registries.BLOCK,
-            PHANTOM_STONE_TRAPDOOR_KEY,
+            PHANTOM_ORE_TRAPDOOR_KEY,
             new TrapdoorBlock(BlockSetType.STONE,
                     Block.Settings.copy(Blocks.END_STONE)
                     .nonOpaque()
                     .strength(3.0F)
                     .sounds(BlockSoundGroup.STONE)
-                    .registryKey(PHANTOM_STONE_TRAPDOOR_KEY))
+                    .registryKey(PHANTOM_ORE_TRAPDOOR_KEY))
     );
 
     private ModBlocks() {
