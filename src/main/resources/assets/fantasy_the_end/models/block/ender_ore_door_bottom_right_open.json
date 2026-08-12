@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/door_bottom_right_open",
-  "textures": {
-    "bottom": "fantasy_the_end:block/ender_ore_door_bottom",
-    "top": "fantasy_the_end:block/ender_ore_door_top"
-  },
-  "render_type": "minecraft:cutout"
-}

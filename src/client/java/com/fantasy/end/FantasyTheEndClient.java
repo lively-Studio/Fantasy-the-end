@@ -24,10 +24,10 @@ import net.minecraft.client.render.BlockRenderLayer;
 public class FantasyTheEndClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        BlockRenderLayerMap.putBlock(ModBlocks.ENDER_ORE_DOOR, BlockRenderLayer.CUTOUT);
-        BlockRenderLayerMap.putBlock(ModBlocks.PHANTOM_ORE_DOOR, BlockRenderLayer.CUTOUT);
-        BlockRenderLayerMap.putBlock(ModBlocks.ENDER_ORE_TRAPDOOR, BlockRenderLayer.CUTOUT);
-        BlockRenderLayerMap.putBlock(ModBlocks.PHANTOM_ORE_TRAPDOOR, BlockRenderLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(ModBlocks.ENDER_DOOR, BlockRenderLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(ModBlocks.PHANTOM_DOOR, BlockRenderLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(ModBlocks.ENDER_TRAPDOOR, BlockRenderLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(ModBlocks.PHANTOM_TRAPDOOR, BlockRenderLayer.CUTOUT);
 
         FantasyTheEnd.LOGGER.info("[幻想:末地] 客户端初始化完成。");
     }

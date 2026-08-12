@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "fantasy_the_end:block/phantom_slab"
+    },
+    "type=top": {
+      "model": "fantasy_the_end:block/phantom_slab_top"
+    },
+    "type=double": {
+      "model": "fantasy_the_end:block/phantom_ore"
+    }
+  }
+}

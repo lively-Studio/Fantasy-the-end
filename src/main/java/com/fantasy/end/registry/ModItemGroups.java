@@ -42,12 +42,12 @@ public final class ModItemGroups {
                             entries.add(ModItems.PURPLE_ENDER_PEARL);
                             entries.add(ModItems.ENDER_ORE);
                             entries.add(ModItems.PHANTOM_ORE);
-                            entries.add(ModItems.ENDER_ORE_SLAB);
-                            entries.add(ModItems.PHANTOM_ORE_SLAB);
-                            entries.add(ModItems.ENDER_ORE_DOOR);
-                            entries.add(ModItems.PHANTOM_ORE_DOOR);
-                            entries.add(ModItems.ENDER_ORE_TRAPDOOR);
-                            entries.add(ModItems.PHANTOM_ORE_TRAPDOOR);
+                            entries.add(ModItems.ENDER_SLAB);
+                            entries.add(ModItems.PHANTOM_SLAB);
+                            entries.add(ModItems.ENDER_DOOR);
+                            entries.add(ModItems.PHANTOM_DOOR);
+                            entries.add(ModItems.ENDER_TRAPDOOR);
+                            entries.add(ModItems.PHANTOM_TRAPDOOR);
                         })
                         .build()
         );

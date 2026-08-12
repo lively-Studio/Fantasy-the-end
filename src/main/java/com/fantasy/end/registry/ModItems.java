@@ -55,58 +55,58 @@ public final class ModItems {
             new BlockItem(ModBlocks.PHANTOM_ORE, new Item.Settings().registryKey(PHANTOM_ORE_KEY))
     );
 
-    public static final RegistryKey<Item> ENDER_ORE_SLAB_KEY =
-            RegistryKey.of(RegistryKeys.ITEM, Identifier.of(FantasyTheEnd.MOD_ID, "ender_ore_slab"));
+    public static final RegistryKey<Item> ENDER_SLAB_KEY =
+            RegistryKey.of(RegistryKeys.ITEM, Identifier.of(FantasyTheEnd.MOD_ID, "ender_slab"));
 
-    public static final BlockItem ENDER_ORE_SLAB = Registry.register(
+    public static final BlockItem ENDER_SLAB = Registry.register(
             Registries.ITEM,
-            ENDER_ORE_SLAB_KEY,
-            new BlockItem(ModBlocks.ENDER_ORE_SLAB, new Item.Settings().registryKey(ENDER_ORE_SLAB_KEY))
+            ENDER_SLAB_KEY,
+            new BlockItem(ModBlocks.ENDER_SLAB, new Item.Settings().registryKey(ENDER_SLAB_KEY))
     );
 
-    public static final RegistryKey<Item> PHANTOM_ORE_SLAB_KEY =
-            RegistryKey.of(RegistryKeys.ITEM, Identifier.of(FantasyTheEnd.MOD_ID, "phantom_ore_slab"));
+    public static final RegistryKey<Item> PHANTOM_SLAB_KEY =
+            RegistryKey.of(RegistryKeys.ITEM, Identifier.of(FantasyTheEnd.MOD_ID, "phantom_slab"));
 
-    public static final BlockItem PHANTOM_ORE_SLAB = Registry.register(
+    public static final BlockItem PHANTOM_SLAB = Registry.register(
             Registries.ITEM,
-            PHANTOM_ORE_SLAB_KEY,
-            new BlockItem(ModBlocks.PHANTOM_ORE_SLAB, new Item.Settings().registryKey(PHANTOM_ORE_SLAB_KEY))
+            PHANTOM_SLAB_KEY,
+            new BlockItem(ModBlocks.PHANTOM_SLAB, new Item.Settings().registryKey(PHANTOM_SLAB_KEY))
     );
 
-    public static final RegistryKey<Item> ENDER_ORE_DOOR_KEY =
-            RegistryKey.of(RegistryKeys.ITEM, Identifier.of(FantasyTheEnd.MOD_ID, "ender_ore_door"));
+    public static final RegistryKey<Item> ENDER_DOOR_KEY =
+            RegistryKey.of(RegistryKeys.ITEM, Identifier.of(FantasyTheEnd.MOD_ID, "ender_door"));
 
-    public static final BlockItem ENDER_ORE_DOOR = Registry.register(
+    public static final BlockItem ENDER_DOOR = Registry.register(
             Registries.ITEM,
-            ENDER_ORE_DOOR_KEY,
-            new BlockItem(ModBlocks.ENDER_ORE_DOOR, new Item.Settings().registryKey(ENDER_ORE_DOOR_KEY))
+            ENDER_DOOR_KEY,
+            new BlockItem(ModBlocks.ENDER_DOOR, new Item.Settings().registryKey(ENDER_DOOR_KEY))
     );
 
-    public static final RegistryKey<Item> PHANTOM_ORE_DOOR_KEY =
-            RegistryKey.of(RegistryKeys.ITEM, Identifier.of(FantasyTheEnd.MOD_ID, "phantom_ore_door"));
+    public static final RegistryKey<Item> PHANTOM_DOOR_KEY =
+            RegistryKey.of(RegistryKeys.ITEM, Identifier.of(FantasyTheEnd.MOD_ID, "phantom_door"));
 
-    public static final BlockItem PHANTOM_ORE_DOOR = Registry.register(
+    public static final BlockItem PHANTOM_DOOR = Registry.register(
             Registries.ITEM,
-            PHANTOM_ORE_DOOR_KEY,
-            new BlockItem(ModBlocks.PHANTOM_ORE_DOOR, new Item.Settings().registryKey(PHANTOM_ORE_DOOR_KEY))
+            PHANTOM_DOOR_KEY,
+            new BlockItem(ModBlocks.PHANTOM_DOOR, new Item.Settings().registryKey(PHANTOM_DOOR_KEY))
     );
 
-    public static final RegistryKey<Item> ENDER_ORE_TRAPDOOR_KEY =
-            RegistryKey.of(RegistryKeys.ITEM, Identifier.of(FantasyTheEnd.MOD_ID, "ender_ore_trapdoor"));
+    public static final RegistryKey<Item> ENDER_TRAPDOOR_KEY =
+            RegistryKey.of(RegistryKeys.ITEM, Identifier.of(FantasyTheEnd.MOD_ID, "ender_trapdoor"));
 
-    public static final BlockItem ENDER_ORE_TRAPDOOR = Registry.register(
+    public static final BlockItem ENDER_TRAPDOOR = Registry.register(
             Registries.ITEM,
-            ENDER_ORE_TRAPDOOR_KEY,
-            new BlockItem(ModBlocks.ENDER_ORE_TRAPDOOR, new Item.Settings().registryKey(ENDER_ORE_TRAPDOOR_KEY))
+            ENDER_TRAPDOOR_KEY,
+            new BlockItem(ModBlocks.ENDER_TRAPDOOR, new Item.Settings().registryKey(ENDER_TRAPDOOR_KEY))
     );
 
-    public static final RegistryKey<Item> PHANTOM_ORE_TRAPDOOR_KEY =
-            RegistryKey.of(RegistryKeys.ITEM, Identifier.of(FantasyTheEnd.MOD_ID, "phantom_ore_trapdoor"));
+    public static final RegistryKey<Item> PHANTOM_TRAPDOOR_KEY =
+            RegistryKey.of(RegistryKeys.ITEM, Identifier.of(FantasyTheEnd.MOD_ID, "phantom_trapdoor"));
 
-    public static final BlockItem PHANTOM_ORE_TRAPDOOR = Registry.register(
+    public static final BlockItem PHANTOM_TRAPDOOR = Registry.register(
             Registries.ITEM,
-            PHANTOM_ORE_TRAPDOOR_KEY,
-            new BlockItem(ModBlocks.PHANTOM_ORE_TRAPDOOR, new Item.Settings().registryKey(PHANTOM_ORE_TRAPDOOR_KEY))
+            PHANTOM_TRAPDOOR_KEY,
+            new BlockItem(ModBlocks.PHANTOM_TRAPDOOR, new Item.Settings().registryKey(PHANTOM_TRAPDOOR_KEY))
     );
 
     private ModItems() {
