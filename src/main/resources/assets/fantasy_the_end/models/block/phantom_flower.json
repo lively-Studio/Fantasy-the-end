@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "fantasy_the_end:block/phantom_flower"
+  }
+}

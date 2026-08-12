@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": {"item": "fantasy_the_end:phantom_upgrade_smithing_template"},
+  "base": {"item": "fantasy_the_end:ender_helmet"},
+  "addition": {"item": "fantasy_the_end:phantom_stone"},
+  "result": {"item": "fantasy_the_end:phantom_helmet"}
+}

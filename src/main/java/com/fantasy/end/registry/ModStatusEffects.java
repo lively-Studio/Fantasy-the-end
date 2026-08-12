@@ -18,6 +18,7 @@ package com.fantasy.end.registry;
 
 import com.fantasy.end.FantasyTheEnd;
 import com.fantasy.end.effect.EnderStatusEffect;
+import com.fantasy.end.effect.TeleportStatusEffect;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.registry.Registries;
@@ -36,6 +37,15 @@ public final class ModStatusEffects {
             Registries.STATUS_EFFECT,
             ENDER_KEY,
             new EnderStatusEffect(StatusEffectCategory.BENEFICIAL, 0x964BB5)
+    );
+
+    public static final RegistryKey<StatusEffect> TELEPORT_KEY =
+            RegistryKey.of(RegistryKeys.STATUS_EFFECT, Identifier.of(FantasyTheEnd.MOD_ID, "teleport"));
+
+    public static final RegistryEntry.Reference<StatusEffect> TELEPORT = Registry.registerReference(
+            Registries.STATUS_EFFECT,
+            TELEPORT_KEY,
+            new TeleportStatusEffect(StatusEffectCategory.NEUTRAL, 0x598188)
     );
 
     private ModStatusEffects() {

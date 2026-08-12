@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SSS",
+    "SES",
+    "SPS"
+  ],
+  "key": {
+    "S": {
+      "item": "fantasy_the_end:phantom_stone"
+    },
+    "E": {
+      "item": "fantasy_the_end:ender_stone"
+    },
+    "P": {
+      "item": "minecraft:paper"
+    }
+  },
+  "result": {
+    "count": 2,
+    "id": "fantasy_the_end:ender_upgrade_smithing_template"
+  }
+}

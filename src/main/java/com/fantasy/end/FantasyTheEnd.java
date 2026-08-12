@@ -17,10 +17,14 @@
 package com.fantasy.end;
 
 import com.fantasy.end.registry.ModBlocks;
+import com.fantasy.end.registry.ModDecorativeBlocks;
 import com.fantasy.end.registry.ModItemGroups;
 import com.fantasy.end.registry.ModItems;
+import com.fantasy.end.registry.ModPlants;
+import com.fantasy.end.registry.ModPotions;
 import com.fantasy.end.registry.ModRecipes;
 import com.fantasy.end.registry.ModStatusEffects;
+import com.fantasy.end.registry.ModToolArmor;
 import com.fantasy.end.event.EnderPortalHandler;
 import com.fantasy.end.handler.EnderTeleportHandler;
 import net.fabricmc.api.ModInitializer;
@@ -37,8 +41,12 @@ public class FantasyTheEnd implements ModInitializer {
         ModStatusEffects.init();
         ModBlocks.init();
         ModItems.init();
+        ModToolArmor.init();
+        ModPlants.init();
+        ModDecorativeBlocks.init();
         ModItemGroups.register();
         ModRecipes.init();
+        ModPotions.init();
 
         ServerTickEvents.END_SERVER_TICK.register(new EnderPortalHandler());
         EnderTeleportHandler.register();

@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": {"item": "fantasy_the_end:ender_upgrade_smithing_template"},
+  "base": {"item": "minecraft:diamond_pickaxe"},
+  "addition": {"item": "fantasy_the_end:ender_stone"},
+  "result": {"item": "fantasy_the_end:ender_pickaxe"}
+}

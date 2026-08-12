@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/vine",
+  "textures": {
+    "vine": "fantasy_the_end:block/ender_vine"
+  }
+}

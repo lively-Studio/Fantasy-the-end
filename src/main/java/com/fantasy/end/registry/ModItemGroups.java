@@ -40,6 +40,30 @@ public final class ModItemGroups {
                         .icon(() -> new ItemStack(ModItems.PURPLE_ENDER_PEARL))
                         .entries((displayContext, entries) -> {
                             entries.add(ModItems.PURPLE_ENDER_PEARL);
+                            entries.add(ModToolArmor.ENDER_UPGRADE_SMITHING_TEMPLATE);
+                            entries.add(ModToolArmor.PHANTOM_UPGRADE_SMITHING_TEMPLATE);
+                            entries.add(ModToolArmor.ENDER_SWORD);
+                            entries.add(ModToolArmor.ENDER_PICKAXE);
+                            entries.add(ModToolArmor.ENDER_AXE);
+                            entries.add(ModToolArmor.ENDER_SHOVEL);
+                            entries.add(ModToolArmor.ENDER_HOE);
+                            entries.add(ModToolArmor.ENDER_HELMET);
+                            entries.add(ModToolArmor.ENDER_CHESTPLATE);
+                            entries.add(ModToolArmor.ENDER_LEGGINGS);
+                            entries.add(ModToolArmor.ENDER_BOOTS);
+                            entries.add(ModToolArmor.PHANTOM_SWORD);
+                            entries.add(ModToolArmor.PHANTOM_PICKAXE);
+                            entries.add(ModToolArmor.PHANTOM_AXE);
+                            entries.add(ModToolArmor.PHANTOM_SHOVEL);
+                            entries.add(ModToolArmor.PHANTOM_HOE);
+                            entries.add(ModToolArmor.PHANTOM_HELMET);
+                            entries.add(ModToolArmor.PHANTOM_CHESTPLATE);
+                            entries.add(ModToolArmor.PHANTOM_LEGGINGS);
+                            entries.add(ModToolArmor.PHANTOM_BOOTS);
+                            entries.add(ModPlants.ENDER_FLOWER_ITEM);
+                            entries.add(ModPlants.PHANTOM_FLOWER_ITEM);
+                            entries.add(ModPlants.CRYSTAL_GRASS_ITEM);
+                            entries.add(ModPlants.ENDER_VINE_ITEM);
                             entries.add(ModItems.ENDER_ORE);
                             entries.add(ModItems.PHANTOM_ORE);
                             entries.add(ModItems.ENDER_SLAB);
@@ -54,6 +78,18 @@ public final class ModItemGroups {
                             entries.add(ModItems.PHANTOM_DOOR);
                             entries.add(ModItems.ENDER_TRAPDOOR);
                             entries.add(ModItems.PHANTOM_TRAPDOOR);
+                            entries.add(ModDecorativeBlocks.ENDER_STONE_STAIRS_ITEM);
+                            entries.add(ModDecorativeBlocks.ENDER_STONE_WALL_ITEM);
+                            entries.add(ModDecorativeBlocks.ENDER_STONE_FENCE_ITEM);
+                            entries.add(ModDecorativeBlocks.ENDER_STONE_FENCE_GATE_ITEM);
+                            entries.add(ModDecorativeBlocks.ENDER_STONE_BUTTON_ITEM);
+                            entries.add(ModDecorativeBlocks.ENDER_STONE_PRESSURE_PLATE_ITEM);
+                            entries.add(ModDecorativeBlocks.PHANTOM_STONE_STAIRS_ITEM);
+                            entries.add(ModDecorativeBlocks.PHANTOM_STONE_WALL_ITEM);
+                            entries.add(ModDecorativeBlocks.PHANTOM_STONE_FENCE_ITEM);
+                            entries.add(ModDecorativeBlocks.PHANTOM_STONE_FENCE_GATE_ITEM);
+                            entries.add(ModDecorativeBlocks.PHANTOM_STONE_BUTTON_ITEM);
+                            entries.add(ModDecorativeBlocks.PHANTOM_STONE_PRESSURE_PLATE_ITEM);
                         })
                         .build()
         );
