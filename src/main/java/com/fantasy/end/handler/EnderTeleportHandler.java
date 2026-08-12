@@ -19,7 +19,28 @@ package com.fantasy.end.handler;
 import com.fantasy.end.registry.ModStatusEffects;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
+import net.minecraft.block.AnvilBlock;
+import net.minecraft.block.BarrelBlock;
+import net.minecraft.block.BedBlock;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.BlockWithEntity;
+import net.minecraft.block.CakeBlock;
+import net.minecraft.block.CartographyTableBlock;
+import net.minecraft.block.ChestBlock;
+import net.minecraft.block.CraftingTableBlock;
+import net.minecraft.block.DoorBlock;
+import net.minecraft.block.EnderChestBlock;
+import net.minecraft.block.EnchantingTableBlock;
+import net.minecraft.block.FenceGateBlock;
+import net.minecraft.block.GrindstoneBlock;
+import net.minecraft.block.JukeboxBlock;
+import net.minecraft.block.LeverBlock;
+import net.minecraft.block.LoomBlock;
+import net.minecraft.block.NoteBlock;
+import net.minecraft.block.RespawnAnchorBlock;
+import net.minecraft.block.ShulkerBoxBlock;
+import net.minecraft.block.StonecutterBlock;
+import net.minecraft.block.TrapdoorBlock;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -63,10 +84,37 @@ public final class EnderTeleportHandler {
 
     private static ActionResult onUseBlock(PlayerEntity player, World world, Hand hand, BlockHitResult hit) {
         if (!isValidTeleportContext(player, world, hand)) return ActionResult.PASS;
+        BlockState state = world.getBlockState(hit.getBlockPos());
+        if (isInteractableBlock(state)) return ActionResult.PASS;
 
         Direction side = hit.getSide();
         Vec3d target = Vec3d.ofCenter(hit.getBlockPos().offset(side));
         return doTeleport(player, world, target);
+    }
+
+    private static boolean isInteractableBlock(BlockState state) {
+        Object b = state.getBlock();
+        return b instanceof DoorBlock
+                || b instanceof TrapdoorBlock
+                || b instanceof FenceGateBlock
+                || b instanceof LeverBlock
+                || b instanceof BlockWithEntity
+                || b instanceof ChestBlock
+                || b instanceof EnderChestBlock
+                || b instanceof BarrelBlock
+                || b instanceof ShulkerBoxBlock
+                || b instanceof CraftingTableBlock
+                || b instanceof EnchantingTableBlock
+                || b instanceof AnvilBlock
+                || b instanceof LoomBlock
+                || b instanceof CartographyTableBlock
+                || b instanceof GrindstoneBlock
+                || b instanceof StonecutterBlock
+                || b instanceof BedBlock
+                || b instanceof NoteBlock
+                || b instanceof JukeboxBlock
+                || b instanceof CakeBlock
+                || b instanceof RespawnAnchorBlock;
     }
 
     private static boolean isValidTeleportContext(PlayerEntity player, World world, Hand hand) {
