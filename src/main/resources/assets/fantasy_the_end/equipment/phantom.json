@@ -1,0 +1,24 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "fantasy_the_end:phantom"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "fantasy_the_end:phantom"
+      }
+    ],
+    "horse_body": [
+      {
+        "texture": "fantasy_the_end:phantom"
+      }
+    ],
+    "nautilus_body": [
+      {
+        "texture": "fantasy_the_end:phantom"
+      }
+    ]
+  }
+}
