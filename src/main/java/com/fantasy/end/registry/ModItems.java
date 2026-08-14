@@ -18,8 +18,13 @@ package com.fantasy.end.registry;
 
 import com.fantasy.end.FantasyTheEnd;
 import com.fantasy.end.item.PurpleEnderPearlItem;
+import net.minecraft.component.type.ConsumableComponent;
+import net.minecraft.component.type.ConsumableComponents;
+import net.minecraft.component.type.FoodComponent;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.consume.ApplyEffectsConsumeEffect;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
@@ -161,6 +166,87 @@ public final class ModItems {
             Registries.ITEM,
             PHANTOM_TRAPDOOR_KEY,
             new BlockItem(ModBlocks.PHANTOM_TRAPDOOR, new Item.Settings().registryKey(PHANTOM_TRAPDOOR_KEY))
+    );
+
+    // ===== 末地事件/陨石方块 =====
+
+    public static final RegistryKey<Item> END_METEORITE_KEY =
+            RegistryKey.of(RegistryKeys.ITEM, Identifier.of(FantasyTheEnd.MOD_ID, "end_meteorite"));
+
+    public static final BlockItem END_METEORITE = Registry.register(
+            Registries.ITEM,
+            END_METEORITE_KEY,
+            new BlockItem(ModBlocks.END_METEORITE, new Item.Settings().registryKey(END_METEORITE_KEY))
+    );
+
+    // ===== 末地生态/食物 =====
+
+    public static final RegistryKey<Item> ENDER_FRUIT_KEY =
+            RegistryKey.of(RegistryKeys.ITEM, Identifier.of(FantasyTheEnd.MOD_ID, "ender_fruit"));
+
+    public static final Item ENDER_FRUIT = Registry.register(
+            Registries.ITEM,
+            ENDER_FRUIT_KEY,
+            new Item(new Item.Settings()
+                    .registryKey(ENDER_FRUIT_KEY)
+                    .food(new FoodComponent.Builder()
+                            .nutrition(4)
+                            .saturationModifier(0.6F)
+                            .build(),
+                            ConsumableComponents.food()
+                            .consumeEffect(new ApplyEffectsConsumeEffect(
+                                    new StatusEffectInstance(ModStatusEffects.ENDER, 200, 0), 1.0F))
+                            .build()))
+    );
+
+    public static final RegistryKey<Item> PHANTOM_FRUIT_KEY =
+            RegistryKey.of(RegistryKeys.ITEM, Identifier.of(FantasyTheEnd.MOD_ID, "phantom_fruit"));
+
+    public static final Item PHANTOM_FRUIT = Registry.register(
+            Registries.ITEM,
+            PHANTOM_FRUIT_KEY,
+            new Item(new Item.Settings()
+                    .registryKey(PHANTOM_FRUIT_KEY)
+                    .food(new FoodComponent.Builder()
+                            .nutrition(4)
+                            .saturationModifier(0.6F)
+                            .build(),
+                            ConsumableComponents.food()
+                            .consumeEffect(new ApplyEffectsConsumeEffect(
+                                    new StatusEffectInstance(ModStatusEffects.TELEPORT, 100, 0), 1.0F))
+                            .build()))
+    );
+
+    public static final RegistryKey<Item> ROASTED_CHORUS_FRUIT_KEY =
+            RegistryKey.of(RegistryKeys.ITEM, Identifier.of(FantasyTheEnd.MOD_ID, "roasted_chorus_fruit"));
+
+    public static final Item ROASTED_CHORUS_FRUIT = Registry.register(
+            Registries.ITEM,
+            ROASTED_CHORUS_FRUIT_KEY,
+            new Item(new Item.Settings()
+                    .registryKey(ROASTED_CHORUS_FRUIT_KEY)
+                    .food(new FoodComponent.Builder()
+                            .nutrition(6)
+                            .saturationModifier(0.8F)
+                            .build()))
+    );
+
+    public static final RegistryKey<Item> ENDER_PIE_KEY =
+            RegistryKey.of(RegistryKeys.ITEM, Identifier.of(FantasyTheEnd.MOD_ID, "ender_pie"));
+
+    public static final Item ENDER_PIE = Registry.register(
+            Registries.ITEM,
+            ENDER_PIE_KEY,
+            new Item(new Item.Settings()
+                    .registryKey(ENDER_PIE_KEY)
+                    .food(new FoodComponent.Builder()
+                            .nutrition(8)
+                            .saturationModifier(0.9F)
+                            .build(),
+                            ConsumableComponents.food()
+                            .consumeEffect(new ApplyEffectsConsumeEffect(
+                                    new StatusEffectInstance(ModStatusEffects.ENDER, 400, 0), 1.0F))
+                            .build()))
     );
 
     private ModItems() {

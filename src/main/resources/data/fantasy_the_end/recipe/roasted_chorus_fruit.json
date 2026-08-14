@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smelting",
+  "category": "food",
+  "ingredient": {
+    "item": "minecraft:chorus_fruit"
+  },
+  "result": {
+    "id": "fantasy_the_end:roasted_chorus_fruit"
+  },
+  "experience": 0.35,
+  "cookingtime": 200
+}

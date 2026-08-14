@@ -23,6 +23,8 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.DoorBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.TrapdoorBlock;
+import net.minecraft.block.ExperienceDroppingBlock;
+import net.minecraft.util.math.intprovider.UniformIntProvider;
 
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -159,6 +161,22 @@ public final class ModBlocks {
                     .strength(3.0F)
                     .sounds(BlockSoundGroup.STONE)
                     .registryKey(PHANTOM_TRAPDOOR_KEY))
+    );
+
+    // ===== 末地事件/陨石方块 =====
+
+    public static final RegistryKey<Block> END_METEORITE_KEY =
+            RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(FantasyTheEnd.MOD_ID, "end_meteorite"));
+
+    public static final Block END_METEORITE = Registry.register(
+            Registries.BLOCK,
+            END_METEORITE_KEY,
+            new ExperienceDroppingBlock(UniformIntProvider.create(3, 7),
+                    Block.Settings.copy(Blocks.END_STONE)
+                    .strength(4.0F)
+                    .resistance(6.0F)
+                    .sounds(BlockSoundGroup.STONE)
+                    .registryKey(END_METEORITE_KEY))
     );
 
     private ModBlocks() {

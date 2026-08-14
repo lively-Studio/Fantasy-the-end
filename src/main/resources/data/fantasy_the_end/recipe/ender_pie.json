@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "food",
+  "pattern": [
+    "#X#",
+    " E "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:chorus_fruit"
+    },
+    "X": {
+      "item": "fantasy_the_end:ender_fruit"
+    },
+    "E": {
+      "item": "minecraft:egg"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "fantasy_the_end:ender_pie"
+  }
+}
