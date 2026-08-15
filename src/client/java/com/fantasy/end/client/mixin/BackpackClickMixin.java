@@ -20,6 +20,7 @@ import com.fantasy.end.item.BackpackItem;
 import com.fantasy.end.network.BackpackNetworking;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.Click;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.gui.screen.ingame.InventoryScreen;
 import net.minecraft.screen.slot.Slot;
@@ -40,12 +41,12 @@ public abstract class BackpackClickMixin {
     private int lastClickSlot = -1;
 
     @Inject(method = "mouseClicked", at = @At("HEAD"), cancellable = true)
-    private void onMouseClicked(double mouseX, double mouseY, int button, CallbackInfoReturnable<Boolean> cir) {
+    private void onMouseClicked(Click click, boolean button, CallbackInfoReturnable<Boolean> cir) {
         HandledScreen<?> screen = (HandledScreen<?>) (Object) this;
         // 仅在玩家背包界面处理双击
         if (!(screen instanceof InventoryScreen)) return;
 
-        Slot slot = ((HandledScreenAccessor) screen).invokeGetSlotAt(mouseX, mouseY);
+        Slot slot = ((HandledScreenAccessor) screen).invokeGetSlotAt(click.x(), click.y());
         if (slot == null) return;
 
         if (slot.hasStack() && slot.getStack().getItem() instanceof BackpackItem) {
