@@ -106,5 +106,14 @@
   "item.minecraft.splash_potion.effect.teleport_strong": "Splash Teleport Potion",
   "item.minecraft.lingering_potion.effect.teleport": "Lingering Teleport Potion",
   "item.minecraft.lingering_potion.effect.teleport_long": "Lingering Teleport Potion",
-  "item.minecraft.lingering_potion.effect.teleport_strong": "Lingering Teleport Potion"
+  "item.minecraft.lingering_potion.effect.teleport_strong": "Lingering Teleport Potion",
+  "item.fantasy_the_end.ender_backpack": "Ender Backpack",
+  "item.fantasy_the_end.phantom_backpack": "Phantom Backpack",
+  "container.fantasy_the_end.ender_backpack": "Ender Backpack",
+  "container.fantasy_the_end.phantom_backpack": "Phantom Backpack",
+  "item.fantasy_the_end.backpack.tooltip": "Contains %1$s/%2$s items",
+  "entity.fantasy_the_end.tameable_enderman": "Tameable Enderman",
+  "entity.fantasy_the_end.tameable_enderman.tamed": "Tamed Enderman (%s)",
+  "container.fantasy_the_end.ender_man": "Enderman Inventory",
+  "item.fantasy_the_end.tameable_enderman_spawn_egg": "Tameable Enderman Spawn Egg"
 }

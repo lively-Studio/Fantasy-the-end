@@ -83,6 +83,8 @@ public final class ModItemGroups {
                             entries.add(ModItems.PHANTOM_FRUIT);
                             entries.add(ModItems.ROASTED_CHORUS_FRUIT);
                             entries.add(ModItems.ENDER_PIE);
+                            entries.add(ModItems.ENDER_BACKPACK);
+                            entries.add(ModItems.PHANTOM_BACKPACK);
                             entries.add(ModDecorativeBlocks.ENDER_STONE_STAIRS_ITEM);
                             entries.add(ModDecorativeBlocks.ENDER_STONE_WALL_ITEM);
                             entries.add(ModDecorativeBlocks.ENDER_STONE_FENCE_ITEM);

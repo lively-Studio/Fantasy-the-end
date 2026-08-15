@@ -16,13 +16,16 @@
  */
 package com.fantasy.end;
 
+import com.fantasy.end.network.BackpackNetworking;
 import com.fantasy.end.registry.ModBlocks;
 import com.fantasy.end.registry.ModDecorativeBlocks;
+import com.fantasy.end.registry.ModEntities;
 import com.fantasy.end.registry.ModItemGroups;
 import com.fantasy.end.registry.ModItems;
 import com.fantasy.end.registry.ModPlants;
 import com.fantasy.end.registry.ModPotions;
 import com.fantasy.end.registry.ModRecipes;
+import com.fantasy.end.registry.ModScreenHandlers;
 import com.fantasy.end.registry.ModStatusEffects;
 import com.fantasy.end.registry.ModToolArmor;
 import com.fantasy.end.event.EnderPortalHandler;
@@ -40,6 +43,7 @@ public class FantasyTheEnd implements ModInitializer {
     @Override
     public void onInitialize() {
         ModStatusEffects.init();
+        ModEntities.init();
         ModBlocks.init();
         ModItems.init();
         ModToolArmor.init();
@@ -48,6 +52,8 @@ public class FantasyTheEnd implements ModInitializer {
         ModItemGroups.register();
         ModRecipes.init();
         ModPotions.init();
+        ModScreenHandlers.init();
+        BackpackNetworking.init();
 
         ServerTickEvents.END_SERVER_TICK.register(new EnderPortalHandler());
         EnderTeleportHandler.register();

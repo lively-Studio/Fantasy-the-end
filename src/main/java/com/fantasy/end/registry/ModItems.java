@@ -17,6 +17,7 @@
 package com.fantasy.end.registry;
 
 import com.fantasy.end.FantasyTheEnd;
+import com.fantasy.end.item.BackpackItem;
 import com.fantasy.end.item.PurpleEnderPearlItem;
 import net.minecraft.component.type.ConsumableComponent;
 import net.minecraft.component.type.ConsumableComponents;
@@ -29,6 +30,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public final class ModItems {
@@ -247,6 +249,32 @@ public final class ModItems {
                             .consumeEffect(new ApplyEffectsConsumeEffect(
                                     new StatusEffectInstance(ModStatusEffects.ENDER, 400, 0), 1.0F))
                             .build()))
+    );
+
+    // ===== 背包 =====
+
+    public static final RegistryKey<Item> ENDER_BACKPACK_KEY =
+            RegistryKey.of(RegistryKeys.ITEM, Identifier.of(FantasyTheEnd.MOD_ID, "ender_backpack"));
+
+    public static final Item ENDER_BACKPACK = Registry.register(
+            Registries.ITEM,
+            ENDER_BACKPACK_KEY,
+            new BackpackItem(
+                    new Item.Settings().registryKey(ENDER_BACKPACK_KEY).maxCount(1),
+                    Text.translatable("container.fantasy_the_end.ender_backpack")
+            )
+    );
+
+    public static final RegistryKey<Item> PHANTOM_BACKPACK_KEY =
+            RegistryKey.of(RegistryKeys.ITEM, Identifier.of(FantasyTheEnd.MOD_ID, "phantom_backpack"));
+
+    public static final Item PHANTOM_BACKPACK = Registry.register(
+            Registries.ITEM,
+            PHANTOM_BACKPACK_KEY,
+            new BackpackItem(
+                    new Item.Settings().registryKey(PHANTOM_BACKPACK_KEY).maxCount(1),
+                    Text.translatable("container.fantasy_the_end.phantom_backpack")
+            )
     );
 
     private ModItems() {
