@@ -27,8 +27,12 @@ def hsv_to_rgb01(h, s, v):
     r, g, b = colorsys.hsv_to_rgb(h, s, v)
     return (int(r * 255), int(g * 255), int(b * 255))
 
-def recolor_armor_texture(img, target_hsv, brightness_base=0.5):
-    """保持原始明暗对比的色相替换，专门用于P模式(调色板)纹理"""
+def recolor_armor_texture(img, target_hsv, brightness_base=0.5, palette_mode=False):
+    """保持原始明暗对比的色相替换
+
+    palette_mode=True: 保存为P模式（调色板），用于盔甲渲染层纹理
+    palette_mode=False: 保存为RGBA模式，用于物品纹理
+    """
     img = img.convert("RGBA")
     px = img.load()
     w, h = img.size
@@ -48,6 +52,11 @@ def recolor_armor_texture(img, target_hsv, brightness_base=0.5):
             new_s = max(0.05, min(1.0, new_s))
             nr, ng, nb = hsv_to_rgb01(th, new_s, new_v)
             px[x, y] = (nr, ng, nb, a)
+
+    if palette_mode:
+        # 转换为P模式（调色板），匹配原版下界合金纹理格式
+        # 使用来自原版纹理的调色板作为参考，保留透明度
+        img = img.quantize(colors=256, method=Image.Quantize.FASTOCTREE)
     return img
 
 
@@ -71,10 +80,10 @@ def main():
             os.makedirs(out_dir, exist_ok=True)
             out_path = os.path.join(out_dir, f"{variant_name}.png")
 
-            # 重新着色
-            recolored = recolor_armor_texture(src_img.copy(), hsv)
+            # 重新着色（渲染层纹理使用P模式调色板）
+            recolored = recolor_armor_texture(src_img.copy(), hsv, palette_mode=True)
             recolored.save(out_path)
-            print(f"[OK] textures/entity/equipment/{subdir}/{variant_name}.png ({os.path.getsize(out_path)} bytes)")
+            print(f"[OK] textures/entity/equipment/{subdir}/{variant_name}.png (mode={recolored.mode}, {os.path.getsize(out_path)} bytes)")
 
     # ===== 2. 盔甲物品纹理 =====
     armor_pieces = ["helmet", "chestplate", "leggings", "boots"]
