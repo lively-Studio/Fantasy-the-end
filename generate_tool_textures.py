@@ -19,10 +19,6 @@ ITEMS = [
     ("netherite_axe", "ender_axe", "phantom_axe"),
     ("netherite_shovel", "ender_shovel", "phantom_shovel"),
     ("netherite_hoe", "ender_hoe", "phantom_hoe"),
-    ("netherite_helmet", "ender_helmet", "phantom_helmet"),
-    ("netherite_chestplate", "ender_chestplate", "phantom_chestplate"),
-    ("netherite_leggings", "ender_leggings", "phantom_leggings"),
-    ("netherite_boots", "ender_boots", "phantom_boots"),
     ("netherite_upgrade_smithing_template", "ender_upgrade_smithing_template", "phantom_upgrade_smithing_template"),
 ]
 
