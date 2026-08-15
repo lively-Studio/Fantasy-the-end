@@ -165,7 +165,7 @@ public class TameableEnderManEntity extends EndermanEntity implements NamedScree
                         stack.decrement(1);
                     }
                     this.tame(player);
-                    this.getEntityWorld().sendEntityStatus(this, (byte) 7); // 驯服成功粒子效果
+                    this.getEntityWorld().sendEntityStatus(this, (byte) 18); // 驯服成功爱心粒子
                 }
                 return ActionResult.SUCCESS;
             }
