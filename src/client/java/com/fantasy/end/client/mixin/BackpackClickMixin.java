@@ -25,7 +25,6 @@ import net.minecraft.client.gui.screen.ingame.InventoryScreen;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.screen.slot.SlotActionType;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -33,12 +32,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(HandledScreen.class)
 public abstract class BackpackClickMixin {
-
-    @Shadow
-    protected abstract Slot getSlotAt(double x, double y);
-
-    @Shadow
-    protected int focusedSlot;
 
     @Unique
     private long lastClickTime = 0;
@@ -52,7 +45,7 @@ public abstract class BackpackClickMixin {
         // 仅在玩家背包界面处理双击
         if (!(screen instanceof InventoryScreen)) return;
 
-        Slot slot = getSlotAt(mouseX, mouseY);
+        Slot slot = ((HandledScreenAccessor) screen).invokeGetSlotAt(mouseX, mouseY);
         if (slot == null) return;
 
         if (slot.hasStack() && slot.getStack().getItem() instanceof BackpackItem) {
