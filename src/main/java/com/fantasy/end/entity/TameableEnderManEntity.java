@@ -16,7 +16,7 @@
  */
 package com.fantasy.end.entity;
 
-import com.fantasy.end.item.PurpleEnderPearlItem;
+import com.fantasy.end.item.PurplePoppedChorusFruitItem;
 import com.fantasy.end.screen.EnderManScreenHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -159,7 +159,7 @@ public class TameableEnderManEntity extends EndermanEntity implements NamedScree
 
         if (!this.isTamed()) {
             // 未驯服：使用紫色末影珍珠驯服
-            if (stack.getItem() instanceof PurpleEnderPearlItem) {
+            if (stack.getItem() instanceof PurplePoppedChorusFruitItem) {
                 if (!this.getEntityWorld().isClient()) {
                     if (!player.isCreative()) {
                         stack.decrement(1);
@@ -279,7 +279,7 @@ public class TameableEnderManEntity extends EndermanEntity implements NamedScree
                     ItemStack stack = itemEntity.getStack();
                     if (stack.isEmpty()) return false;
                     // 不捡拾本模组物品（紫色末影珍珠）
-                    return !(stack.getItem() instanceof PurpleEnderPearlItem);
+                    return !(stack.getItem() instanceof PurplePoppedChorusFruitItem);
                 }
         );
 

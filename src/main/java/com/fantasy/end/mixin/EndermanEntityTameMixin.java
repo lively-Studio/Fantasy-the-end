@@ -17,9 +17,8 @@
 package com.fantasy.end.mixin;
 
 import com.fantasy.end.entity.TameableEnderManEntity;
-import com.fantasy.end.item.PurpleEnderPearlItem;
+import com.fantasy.end.item.PurplePoppedChorusFruitItem;
 import com.fantasy.end.registry.ModEntities;
-import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.mob.EndermanEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -49,7 +48,7 @@ public abstract class EndermanEntityTameMixin {
         if (world.isClient()) return;
 
         // 检查是否手持紫色末影珍珠
-        if (player.getStackInHand(hand).getItem() instanceof PurpleEnderPearlItem) {
+        if (player.getStackInHand(hand).getItem() instanceof PurplePoppedChorusFruitItem) {
             // 在服务端执行转换
             if (world instanceof ServerWorld serverWorld) {
                 // 消耗珍珠
@@ -57,24 +56,22 @@ public abstract class EndermanEntityTameMixin {
                     player.getStackInHand(hand).decrement(1);
                 }
 
-                // 创建可驯服末影人实体
-                TameableEnderManEntity tamedEnderman = ModEntities.TAMEABLE_ENDER_MAN.create(serverWorld, SpawnReason.CONVERSION);
-                if (tamedEnderman != null) {
-                    // 复制位置和朝向
-                    tamedEnderman.refreshPositionAndAngles(enderman.getX(), enderman.getY(), enderman.getZ(), enderman.getYaw(), enderman.getPitch());
-                    tamedEnderman.setBodyYaw(enderman.getBodyYaw());
-                    tamedEnderman.setHeadYaw(enderman.getHeadYaw());
+                // 直接构造可驯服末影人实体
+                TameableEnderManEntity tamedEnderman = new TameableEnderManEntity(ModEntities.TAMEABLE_ENDER_MAN, serverWorld);
+                // 复制位置和朝向
+                tamedEnderman.refreshPositionAndAngles(enderman.getX(), enderman.getY(), enderman.getZ(), enderman.getYaw(), enderman.getPitch());
+                tamedEnderman.setBodyYaw(enderman.getBodyYaw());
+                tamedEnderman.setHeadYaw(enderman.getHeadYaw());
 
-                    // 设置驯服状态
-                    tamedEnderman.tame(player);
+                // 设置驯服状态
+                tamedEnderman.tame(player);
 
-                    // 移除原版末影人，生成驯服末影人
-                    enderman.discard();
-                    serverWorld.spawnEntity(tamedEnderman);
+                // 移除原版末影人，生成驯服末影人
+                enderman.discard();
+                serverWorld.spawnEntity(tamedEnderman);
 
-                    // 发送爱心粒子（状态码 18 = 爱心粒子）
-                    serverWorld.sendEntityStatus(tamedEnderman, (byte) 18);
-                }
+                // 发送爱心粒子（状态码 18 = 爱心粒子）
+                serverWorld.sendEntityStatus(tamedEnderman, (byte) 18);
             }
 
             cir.setReturnValue(ActionResult.SUCCESS);

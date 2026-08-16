@@ -19,6 +19,7 @@ package com.fantasy.end.registry;
 import com.fantasy.end.FantasyTheEnd;
 import com.fantasy.end.item.BackpackItem;
 import com.fantasy.end.item.PurpleEnderPearlItem;
+import com.fantasy.end.item.PurplePoppedChorusFruitItem;
 import net.minecraft.component.type.ConsumableComponent;
 import net.minecraft.component.type.ConsumableComponents;
 import net.minecraft.component.type.FoodComponent;
@@ -217,6 +218,15 @@ public final class ModItems {
                             .consumeEffect(new ApplyEffectsConsumeEffect(
                                     new StatusEffectInstance(ModStatusEffects.TELEPORT, 100, 0), 1.0F))
                             .build()))
+    );
+
+    public static final RegistryKey<Item> PURPLE_POPPED_CHORUS_FRUIT_KEY =
+            RegistryKey.of(RegistryKeys.ITEM, Identifier.of(FantasyTheEnd.MOD_ID, "purple_popped_chorus_fruit"));
+
+    public static final Item PURPLE_POPPED_CHORUS_FRUIT = Registry.register(
+            Registries.ITEM,
+            PURPLE_POPPED_CHORUS_FRUIT_KEY,
+            new PurplePoppedChorusFruitItem(new Item.Settings().registryKey(PURPLE_POPPED_CHORUS_FRUIT_KEY))
     );
 
     public static final RegistryKey<Item> ROASTED_CHORUS_FRUIT_KEY =
