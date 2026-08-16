@@ -19,8 +19,8 @@ package com.fantasy.end.mixin;
 import com.fantasy.end.entity.TameableEnderManEntity;
 import com.fantasy.end.item.PurplePoppedChorusFruitItem;
 import com.fantasy.end.registry.ModEntities;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.mob.EndermanEntity;
-import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.ActionResult;
@@ -31,13 +31,13 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(MobEntity.class)
+@Mixin(PlayerEntity.class)
 public abstract class EndermanEntityTameMixin {
 
     @Inject(method = "interact", at = @At("HEAD"), cancellable = true)
-    private void onInteract(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
-        // 只处理末影人（包括原版和可驯服末影人）
-        if (!(((Object) this) instanceof EndermanEntity enderman)) return;
+    private void onInteract(Entity target, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
+        // 只处理末影人
+        if (!(target instanceof EndermanEntity enderman)) return;
 
         // 可驯服末影人已有自己的处理逻辑，跳过
         if (enderman instanceof TameableEnderManEntity) return;
@@ -47,11 +47,12 @@ public abstract class EndermanEntityTameMixin {
         // 只在服务端处理
         if (world.isClient()) return;
 
-        // 检查是否手持紫色末影珍珠
+        // 检查是否手持紫松果
+        PlayerEntity player = (PlayerEntity) (Object) this;
         if (player.getStackInHand(hand).getItem() instanceof PurplePoppedChorusFruitItem) {
             // 在服务端执行转换
             if (world instanceof ServerWorld serverWorld) {
-                // 消耗珍珠
+                // 消耗紫松果
                 if (!player.isCreative()) {
                     player.getStackInHand(hand).decrement(1);
                 }
