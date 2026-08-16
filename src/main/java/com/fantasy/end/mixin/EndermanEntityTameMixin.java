@@ -34,8 +34,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(MobEntity.class)
 public abstract class EndermanEntityTameMixin {
 
-    @Inject(method = "interactMob", at = @At("HEAD"), cancellable = true)
-    private void onInteractMob(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
+    @Inject(method = "interact", at = @At("HEAD"), cancellable = true)
+    private void onInteract(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
         // 只处理末影人（包括原版和可驯服末影人）
         if (!(((Object) this) instanceof EndermanEntity enderman)) return;
 
