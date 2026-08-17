@@ -16,66 +16,172 @@
  */
 package com.fantasy.end.mixin;
 
-import com.fantasy.end.entity.TameableEnderManEntity;
 import com.fantasy.end.item.PurplePoppedChorusFruitItem;
-import com.fantasy.end.registry.ModEntities;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.EndermanEntity;
+import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.storage.ReadView;
+import net.minecraft.storage.WriteView;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(PlayerEntity.class)
+import java.util.UUID;
+
+@Mixin(EndermanEntity.class)
 public abstract class EndermanEntityTameMixin {
 
-    @Inject(method = "interact", at = @At("HEAD"), cancellable = true)
-    private void onInteract(Entity target, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
-        // 只处理末影人
-        if (!(target instanceof EndermanEntity enderman)) return;
+    @Unique
+    private static final TrackedData<Boolean> TAMED =
+            DataTracker.registerData(EndermanEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 
-        // 可驯服末影人已有自己的处理逻辑，跳过
-        if (enderman instanceof TameableEnderManEntity) return;
+    @Unique
+    private static final TrackedData<String> OWNER_UUID_STRING =
+            DataTracker.registerData(EndermanEntity.class, TrackedDataHandlerRegistry.STRING);
 
-        World world = enderman.getEntityWorld();
+    // ========== 数据追踪初始化 ==========
 
-        // 只在服务端处理
-        if (world.isClient()) return;
+    @Inject(method = "initDataTracker", at = @At("TAIL"))
+    private void onInitDataTracker(DataTracker.Builder builder, CallbackInfo ci) {
+        builder.add(TAMED, false);
+        builder.add(OWNER_UUID_STRING, "");
+    }
+
+    // ========== 驯服方法 ==========
+
+    @Unique
+    private boolean fantasy$isTamed() {
+        return ((EndermanEntity)(Object)this).getDataTracker().get(TAMED);
+    }
+
+    @Unique
+    private void fantasy$setTamed(boolean tamed) {
+        EndermanEntity self = (EndermanEntity)(Object)this;
+        self.getDataTracker().set(TAMED, tamed);
+        if (tamed) {
+            self.setDespawnCounter(0);
+        }
+    }
+
+    @Unique
+    private UUID fantasy$getOwnerUuid() {
+        EndermanEntity self = (EndermanEntity)(Object)this;
+        String uuidStr = self.getDataTracker().get(OWNER_UUID_STRING);
+        if (uuidStr.isEmpty()) return null;
+        try {
+            return UUID.fromString(uuidStr);
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
+    }
+
+    @Unique
+    private void fantasy$setOwnerUuid(UUID uuid) {
+        EndermanEntity self = (EndermanEntity)(Object)this;
+        self.getDataTracker().set(OWNER_UUID_STRING, uuid != null ? uuid.toString() : "");
+    }
+
+    @Unique
+    private PlayerEntity fantasy$getOwner() {
+        EndermanEntity self = (EndermanEntity)(Object)this;
+        UUID uuid = fantasy$getOwnerUuid();
+        if (uuid == null || !(self.getEntityWorld() instanceof ServerWorld serverWorld)) {
+            return null;
+        }
+        return serverWorld.getPlayerByUuid(uuid);
+    }
+
+    @Unique
+    private boolean fantasy$tame(PlayerEntity player) {
+        EndermanEntity self = (EndermanEntity)(Object)this;
+        fantasy$setTamed(true);
+        fantasy$setOwnerUuid(player.getUuid());
+        self.setAngryAt(null);
+        self.setTarget(null);
+        if (self.getEntityWorld() instanceof ServerWorld) {
+            self.getNavigation().stop();
+        }
+        return true;
+    }
+
+    // ========== 交互 - 驯服 ==========
+
+    @Inject(method = "interactMob", at = @At("HEAD"), cancellable = true)
+    private void onInteractMob(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
+        EndermanEntity self = (EndermanEntity)(Object)this;
+
+        // 已驯服的跳过（由 TameableEnderManEntity 或其他逻辑处理）
+        if (fantasy$isTamed()) return;
 
         // 检查是否手持紫松果
-        PlayerEntity player = (PlayerEntity) (Object) this;
         if (player.getStackInHand(hand).getItem() instanceof PurplePoppedChorusFruitItem) {
-            // 在服务端执行转换
-            if (world instanceof ServerWorld serverWorld) {
+            if (!self.getEntityWorld().isClient()) {
                 // 消耗紫松果
                 if (!player.isCreative()) {
                     player.getStackInHand(hand).decrement(1);
                 }
-
-                // 直接构造可驯服末影人实体
-                TameableEnderManEntity tamedEnderman = new TameableEnderManEntity(ModEntities.TAMEABLE_ENDER_MAN, serverWorld);
-                // 复制位置和朝向
-                tamedEnderman.refreshPositionAndAngles(enderman.getX(), enderman.getY(), enderman.getZ(), enderman.getYaw(), enderman.getPitch());
-                tamedEnderman.setBodyYaw(enderman.getBodyYaw());
-                tamedEnderman.setHeadYaw(enderman.getHeadYaw());
-
-                // 设置驯服状态
-                tamedEnderman.tame(player);
-
-                // 移除原版末影人，生成驯服末影人
-                enderman.discard();
-                serverWorld.spawnEntity(tamedEnderman);
-
-                // 发送爱心粒子（状态码 18 = 爱心粒子）
-                serverWorld.sendEntityStatus(tamedEnderman, (byte) 18);
+                fantasy$tame(player);
+                self.getEntityWorld().sendEntityStatus(self, (byte) 18); // 爱心粒子
             }
-
             cir.setReturnValue(ActionResult.SUCCESS);
         }
+    }
+
+    // ========== 驯服后行为 ==========
+
+    @Inject(method = "isAngry", at = @At("HEAD"), cancellable = true)
+    private void onIsAngry(CallbackInfoReturnable<Boolean> cir) {
+        if (fantasy$isTamed()) {
+            cir.setReturnValue(false);
+        }
+    }
+
+    @Inject(method = "teleportRandomly", at = @At("HEAD"), cancellable = true)
+    private void onTeleportRandomly(CallbackInfoReturnable<Boolean> cir) {
+        if (fantasy$isTamed()) {
+            cir.setReturnValue(false);
+        }
+    }
+
+    @Inject(method = "canImmediatelyDespawn", at = @At("HEAD"), cancellable = true)
+    private void onCanImmediatelyDespawn(double distance, CallbackInfoReturnable<Boolean> cir) {
+        if (fantasy$isTamed()) {
+            cir.setReturnValue(false);
+        }
+    }
+
+    // ========== NBT 持久化 ==========
+
+    @Inject(method = "writeCustomData", at = @At("TAIL"))
+    private void onWriteCustomData(WriteView nbt, CallbackInfo ci) {
+        EndermanEntity self = (EndermanEntity)(Object)this;
+        nbt.putBoolean("FantasyTamed", fantasy$isTamed());
+
+        UUID ownerUuid = fantasy$getOwnerUuid();
+        if (ownerUuid != null) {
+            nbt.putString("FantasyOwner", ownerUuid.toString());
+        }
+    }
+
+    @Inject(method = "readCustomData", at = @At("TAIL"))
+    private void onReadCustomData(ReadView nbt, CallbackInfo ci) {
+        fantasy$setTamed(nbt.getBoolean("FantasyTamed", false));
+
+        nbt.getOptionalString("FantasyOwner").ifPresent(uuidStr -> {
+            try {
+                fantasy$setOwnerUuid(UUID.fromString(uuidStr));
+            } catch (IllegalArgumentException ignored) {
+            }
+        });
     }
 }
