@@ -1,36 +1,34 @@
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
 
+def isCi = System.getenv("CI") != null
+
+def fabricRepoUrl = isCi ? 'https://maven.fabricmc.net/' : 'http://127.0.0.1:8888/'
+def mojangRepoUrl = isCi ? 'https://libraries.minecraft.net/' : 'http://127.0.0.1:8889/'
+
 pluginManagement {
     repositories {
-        maven {
-            name = 'AliyunGradlePlugin'
-            url = 'https://maven.aliyun.com/repository/gradle-plugin'
-        }
-        maven {
-            name = 'AliyunPublic'
-            url = 'https://maven.aliyun.com/repository/public'
-        }
-        maven {
-            name = 'Fabric'
-            url = 'http://127.0.0.1:8888/'
-        }
+        maven { name = 'Fabric';          url = fabricRepoUrl }
+        maven { name = 'AliyunGradlePlugin'; url = 'https://maven.aliyun.com/repository/gradle-plugin' }
+        maven { name = 'AliyunPublic';     url = 'https://maven.aliyun.com/repository/public' }
         mavenCentral()
         gradlePluginPortal()
     }
 }
 
-// 替换 Fabric / Mojang / Maven Central 仓库（规避 Cloudflare 后端并发 TLS 握手
-// 间歇性失败：Fabric 与 Mojang 走本地 curl 代理，Maven Central 走阿里云镜像）
-gradle.allprojects {
-    repositories.whenObjectAdded { repo ->
-        if (repo instanceof MavenArtifactRepository) {
-            def u = repo.url.toString()
-            if (u.contains('libraries.minecraft.net')) {
-                repo.url = 'http://127.0.0.1:8889/'
-            } else if (u.contains('maven.fabricmc.net')) {
-                repo.url = 'http://127.0.0.1:8888/'
-            } else if (u.contains('repo.maven.apache.org') || u.contains('repo1.maven.org')) {
-                repo.url = 'https://maven.aliyun.com/repository/public'
+// 非 CI 环境：替换 Fabric / Mojang 走本地代理，Maven Central 走阿里云镜像
+//（规避 Cloudflare 后端并发 TLS 握手间歇性失败）
+if (!isCi) {
+    gradle.allprojects {
+        repositories.whenObjectAdded { repo ->
+            if (repo instanceof MavenArtifactRepository) {
+                def u = repo.url.toString()
+                if (u.contains('libraries.minecraft.net')) {
+                    repo.url = mojangRepoUrl
+                } else if (u.contains('maven.fabricmc.net')) {
+                    repo.url = fabricRepoUrl
+                } else if (u.contains('repo.maven.apache.org') || u.contains('repo1.maven.org')) {
+                    repo.url = 'https://maven.aliyun.com/repository/public'
+                }
             }
         }
     }

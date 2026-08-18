@@ -17,7 +17,7 @@ repositories {
     }
     maven {
         name = 'Fabric'
-        url = 'http://127.0.0.1:8888/'
+        url = System.getenv("CI") != null ? 'https://maven.fabricmc.net/' : 'http://127.0.0.1:8888/'
     }
     mavenCentral()
 }
