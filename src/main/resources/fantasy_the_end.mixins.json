@@ -5,7 +5,7 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "EnderPearlItemMixin",
-    "EndermanEntityTameMixin"
+    "EntityTypeFactoryMixin"
   ],
   "injectors": {
     "defaultRequire": 1
