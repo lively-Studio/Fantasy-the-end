@@ -333,13 +333,8 @@ public class TameableEnderManEntity extends EndermanEntity implements NamedScree
 
     @Override
     public Text getDisplayName() {
-        if (this.isTamed()) {
-            PlayerEntity owner = this.getOwner();
-            if (owner != null) {
-                return Text.translatable("entity.fantasy_the_end.tameable_enderman.tamed", owner.getName());
-            }
-        }
-        return Text.translatable("entity.fantasy_the_end.tameable_enderman");
+        // 使用原版末影人的名称"末影人/Enderman"
+        return this.getType().getName();
     }
 
     public Text getTitle() {

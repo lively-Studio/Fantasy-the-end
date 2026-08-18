@@ -19,6 +19,7 @@ package com.fantasy.end.mixin;
 import com.fantasy.end.entity.TameableEnderManEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.mob.EndermanEntity;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -31,7 +32,7 @@ public abstract class EntityTypeFactoryMixin {
 
     @SuppressWarnings("unchecked")
     @Inject(method = "create", at = @At("HEAD"), cancellable = true)
-    private void onCreate(World world, CallbackInfoReturnable<Entity> cir) {
+    private void onCreate(World world, SpawnReason reason, CallbackInfoReturnable<Entity> cir) {
         EntityType<?> self = (EntityType<?>) (Object) this;
         // 替换所有原版末影人生成为可驯服末影人
         if (self == EntityType.ENDERMAN) {

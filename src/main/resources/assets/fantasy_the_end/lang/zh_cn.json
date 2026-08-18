@@ -113,8 +113,6 @@
   "container.fantasy_the_end.ender_backpack": "末影背包",
   "container.fantasy_the_end.phantom_backpack": "幻影背包",
   "item.fantasy_the_end.backpack.tooltip": "已容纳 %1$s/%2$s 个物品",
-  "entity.fantasy_the_end.tameable_enderman": "可驯服末影人",
-  "entity.fantasy_the_end.tameable_enderman.tamed": "驯服末影人 (%s)",
   "container.fantasy_the_end.ender_man": "末影人背包",
-  "item.fantasy_the_end.tameable_enderman_spawn_egg": "可驯服末影人生成蛋"
+  "item.fantasy_the_end.tameable_enderman_spawn_egg": "末影人生成蛋"
 }
