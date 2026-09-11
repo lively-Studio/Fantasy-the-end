@@ -22,6 +22,7 @@ import com.fantasy.end.registry.ModEntities;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
+import net.minecraft.entity.EntityType;
 import net.minecraft.util.Identifier;
 
 /**
@@ -39,9 +40,17 @@ public class ModEntityRenderers {
                 TameableEnderManEntityModel::getTexturedModelData
         );
 
-        // 注册实体渲染器
+        // 注册自定义实体渲染器（用于刷蛋/命令生成的可驯服末影人）
         EntityRendererRegistry.register(
                 ModEntities.TAMEABLE_ENDER_MAN,
+                TameableEnderManEntityRenderer::new
+        );
+
+        // 关键：为原版末影人类型注册自定义渲染器
+        // 这样通过 EntityFactoryMixin 创建的 TameableEnderManEntity（使用 EntityType.ENDERMAN）
+        // 也能使用自定义纹理和模型
+        EntityRendererRegistry.register(
+                EntityType.ENDERMAN,
                 TameableEnderManEntityRenderer::new
         );
 

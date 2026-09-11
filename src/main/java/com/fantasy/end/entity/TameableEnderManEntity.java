@@ -24,6 +24,7 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.*;
+import com.fantasy.end.registry.ModItems;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
@@ -36,7 +37,9 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 
 import net.minecraft.inventory.SimpleInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.world.ServerWorld;
@@ -47,12 +50,16 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.EnumSet;
 import java.util.List;
 import java.util.UUID;
 
 public class TameableEnderManEntity extends EndermanEntity implements NamedScreenHandlerFactory {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger("FantasyTheEnd-TameableEnderMan");
 
     private static final TrackedData<Boolean> TAMED = DataTracker.registerData(TameableEnderManEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     private static final TrackedData<String> OWNER_UUID_STRING = DataTracker.registerData(TameableEnderManEntity.class, TrackedDataHandlerRegistry.STRING);
@@ -66,9 +73,20 @@ public class TameableEnderManEntity extends EndermanEntity implements NamedScree
         @Override
         public void markDirty() {
             super.markDirty();
-            TameableEnderManEntity.this.syncArmorFromInventory();
+            // 防止 syncArmorFromInventory <-> syncArmorToInventory 无限递归
+            if (!syncingArmor) {
+                syncingArmor = true;
+                try {
+                    TameableEnderManEntity.this.syncArmorFromInventory();
+                } finally {
+                    syncingArmor = false;
+                }
+            }
         }
     };
+
+    // 盔甲双向同步防重入标志
+    private boolean syncingArmor = false;
 
     private int itemPickupCooldown = 0;
 
@@ -78,6 +96,8 @@ public class TameableEnderManEntity extends EndermanEntity implements NamedScree
         if (this.getAttributeInstance(EntityAttributes.ATTACK_DAMAGE) != null) {
             this.getAttributeInstance(EntityAttributes.ATTACK_DAMAGE).setBaseValue(10.0);
         }
+        LOGGER.debug("[幻想:末地] TameableEnderManEntity 构造完成, 实体ID: {}, 世界: {}",
+                this.getId(), world.isClient() ? "客户端" : "服务端");
     }
 
     @Override
@@ -106,10 +126,12 @@ public class TameableEnderManEntity extends EndermanEntity implements NamedScree
     }
 
     public void setTamed(boolean tamed) {
+        boolean wasTamed = this.dataTracker.get(TAMED);
         this.dataTracker.set(TAMED, tamed);
-        if (tamed) {
+        if (tamed && !wasTamed) {
             // 驯服后：忽略玩家视线，不搬运方块
             this.setDespawnCounter(0);
+            LOGGER.info("[幻想:末地] 末影人已被驯服, 实体ID: {}", this.getId());
         }
     }
 
@@ -138,16 +160,18 @@ public class TameableEnderManEntity extends EndermanEntity implements NamedScree
     }
 
     public boolean tame(PlayerEntity player) {
+        LOGGER.info("[幻想:末地] 开始驯服流程, 玩家: {}, 实体ID: {}", player.getName().getString(), this.getId());
         this.setTamed(true);
         this.setOwnerUuid(player.getUuid());
         // 清除愤怒目标
         this.setAngryAt(null);
         // 设置为不敌对
         this.setTarget(null);
-        // 增加好感度
+        // 停止导航
         if (this.getEntityWorld() instanceof ServerWorld serverWorld) {
             this.getNavigation().stop();
         }
+        LOGGER.info("[幻想:末地] 驯服成功完成, 主人UUID: {}, 实体ID: {}", player.getUuid(), this.getId());
         return true;
     }
 
@@ -156,10 +180,16 @@ public class TameableEnderManEntity extends EndermanEntity implements NamedScree
     @Override
     public ActionResult interactMob(PlayerEntity player, Hand hand) {
         ItemStack stack = player.getStackInHand(hand);
+        LOGGER.info("[幻想:末地] interactMob 被调用, 手持: {}, 已驯服: {}, 实体ID: {}",
+                stack.isEmpty() ? "空手" : stack.getItem().toString(), this.isTamed(), this.getId());
 
         if (!this.isTamed()) {
-            // 未驯服：使用紫色末影珍珠驯服
-            if (stack.getItem() instanceof PurplePoppedChorusFruitItem) {
+            // 未驯服：使用原版紫松果(popped)驯服；生的紫颂果、模组紫松果也同样有效
+            Item item = stack.getItem();
+            if (item == Items.POPPED_CHORUS_FRUIT || item == Items.CHORUS_FRUIT
+                    || item instanceof PurplePoppedChorusFruitItem) {
+                LOGGER.info("[幻想:末地] 玩家 {} 尝试用爆裂紫颂果驯服末影人, 实体ID: {}",
+                        player.getName().getString(), this.getId());
                 if (!this.getEntityWorld().isClient()) {
                     if (!player.isCreative()) {
                         stack.decrement(1);
@@ -173,25 +203,31 @@ public class TameableEnderManEntity extends EndermanEntity implements NamedScree
             return super.interactMob(player, hand);
         }
 
-        // 驯服后：右键打开GUI
-        if (!this.getEntityWorld().isClient() && player.isSneaking()) {
-            player.openHandledScreen(this);
-            return ActionResult.SUCCESS;
-        }
-
-        // 非潜行右键：如果手持物品，放入背包（简单交互）
-        if (!this.getEntityWorld().isClient() && !stack.isEmpty()) {
-            // 尝试将物品放入背包
-            ItemStack remaining = this.addToInventory(stack);
-            if (remaining.isEmpty()) {
-                stack.decrement(1);
-            } else {
-                stack.setCount(remaining.getCount());
+        // 驯服后：普通右键 = 收回成末影人玩偶（仅主人）
+        if (this.isOwner(player)) {
+            if (!this.getEntityWorld().isClient()) {
+                if (!this.inventory.isEmpty()) {
+                    player.sendMessage(Text.literal("末影人背包里还有物品，请先取出再收起。"), false);
+                } else {
+                    ItemStack doll = new ItemStack(ModItems.ENDER_MAN_DOLL);
+                    if (player.giveItemStack(doll)) {
+                        this.discard();
+                        LOGGER.info("[幻想:末地] 玩家 {} 将末影人收成玩偶, 实体ID: {}",
+                                player.getName().getString(), this.getId());
+                    } else {
+                        player.sendMessage(Text.literal("你的背包已满，无法收起末影人。"), false);
+                    }
+                }
             }
             return ActionResult.SUCCESS;
         }
 
         return super.interactMob(player, hand);
+    }
+
+    private boolean isOwner(PlayerEntity player) {
+        UUID owner = this.getOwnerUuid();
+        return owner != null && owner.equals(player.getUuid());
     }
 
     // ========== 背包 ==========
@@ -366,17 +402,24 @@ public class TameableEnderManEntity extends EndermanEntity implements NamedScree
         }
         WriteView inventoryView = nbt.get("Inventory");
         Inventories.writeData(inventoryView, list);
+        
+        LOGGER.debug("[幻想:末地] 保存末影人NBT, 实体ID: {}, 已驯服: {}, 主人: {}", 
+                this.getId(), this.isTamed(), ownerUuid);
     }
 
     @Override
     protected void readCustomData(ReadView nbt) {
         super.readCustomData(nbt);
-        this.setTamed(nbt.getBoolean("Tamed", false));
+        boolean tamed = nbt.getBoolean("Tamed", false);
+        this.setTamed(tamed);
 
+        final UUID[] loadedOwner = {null};
         nbt.getOptionalString("Owner").ifPresent(uuidStr -> {
             try {
-                this.setOwnerUuid(UUID.fromString(uuidStr));
+                loadedOwner[0] = UUID.fromString(uuidStr);
+                this.setOwnerUuid(loadedOwner[0]);
             } catch (IllegalArgumentException ignored) {
+                LOGGER.warn("[幻想:末地] 解析末影人主人UUID失败: {}", uuidStr);
             }
         });
 
@@ -387,10 +430,14 @@ public class TameableEnderManEntity extends EndermanEntity implements NamedScree
             for (int i = 0; i < TOTAL_INVENTORY_SIZE; i++) {
                 this.inventory.setStack(i, list.get(i));
             }
+            LOGGER.debug("[幻想:末地] 加载末影人背包数据, 实体ID: {}", this.getId());
         });
 
         // 同步盔甲
         this.syncArmorFromInventory();
+        
+        LOGGER.info("[幻想:末地] 加载末影人NBT完成, 实体ID: {}, 已驯服: {}, 主人: {}", 
+                this.getId(), tamed, loadedOwner[0]);
     }
 
     // ========== 实体属性 ==========

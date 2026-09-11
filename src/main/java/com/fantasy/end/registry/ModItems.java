@@ -18,6 +18,7 @@ package com.fantasy.end.registry;
 
 import com.fantasy.end.FantasyTheEnd;
 import com.fantasy.end.item.BackpackItem;
+import com.fantasy.end.item.EndermanDollItem;
 import com.fantasy.end.item.PurpleEnderPearlItem;
 import com.fantasy.end.item.PurplePoppedChorusFruitItem;
 import net.minecraft.component.type.ConsumableComponent;
@@ -285,6 +286,17 @@ public final class ModItems {
                     new Item.Settings().registryKey(PHANTOM_BACKPACK_KEY).maxCount(1),
                     Text.translatable("container.fantasy_the_end.phantom_backpack")
             )
+    );
+
+    // ===== 末影人玩偶（收起/召唤已驯服末影人） =====
+
+    public static final RegistryKey<Item> ENDER_MAN_DOLL_KEY =
+            RegistryKey.of(RegistryKeys.ITEM, Identifier.of(FantasyTheEnd.MOD_ID, "ender_man_doll"));
+
+    public static final Item ENDER_MAN_DOLL = Registry.register(
+            Registries.ITEM,
+            ENDER_MAN_DOLL_KEY,
+            new EndermanDollItem(new Item.Settings().registryKey(ENDER_MAN_DOLL_KEY).maxCount(1))
     );
 
     private ModItems() {

@@ -19,8 +19,10 @@ package com.fantasy.end.registry;
 import com.fantasy.end.FantasyTheEnd;
 import com.fantasy.end.entity.TameableEnderManEntity;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
+import net.minecraft.entity.TypedEntityData;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.item.SpawnEggItem;
@@ -29,6 +31,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
+import net.minecraft.nbt.NbtCompound;
 
 public class ModEntities {
 
@@ -55,7 +58,10 @@ public class ModEntities {
     public static final Item TAMEABLE_ENDER_MAN_SPAWN_EGG = Registry.register(
             Registries.ITEM,
             TAMEABLE_ENDER_MAN_SPAWN_EGG_KEY,
-            new SpawnEggItem(new Item.Settings().registryKey(TAMEABLE_ENDER_MAN_SPAWN_EGG_KEY))
+            new SpawnEggItem(new Item.Settings()
+                    .registryKey(TAMEABLE_ENDER_MAN_SPAWN_EGG_KEY)
+                    .component(DataComponentTypes.ENTITY_DATA,
+                            TypedEntityData.create(TAMEABLE_ENDER_MAN, new NbtCompound())))
     );
 
     public static void init() {

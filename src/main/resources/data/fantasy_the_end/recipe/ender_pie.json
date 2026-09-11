@@ -6,15 +6,15 @@
     " E "
   ],
   "key": {
-    "#": {
-      "item": "minecraft:chorus_fruit"
-    },
-    "X": {
-      "item": "fantasy_the_end:ender_fruit"
-    },
-    "E": {
-      "item": "minecraft:egg"
-    }
+    "#": [
+      "minecraft:chorus_fruit"
+    ],
+    "X": [
+      "fantasy_the_end:ender_fruit"
+    ],
+    "E": [
+      "minecraft:egg"
+    ]
   },
   "result": {
     "count": 1,

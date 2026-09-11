@@ -17,6 +17,7 @@
 package com.fantasy.end;
 
 import com.fantasy.end.client.entity.renderer.ModEntityRenderers;
+import com.fantasy.end.client.network.EnderManNetworkingClient;
 import com.fantasy.end.client.screen.BackpackScreen;
 import com.fantasy.end.client.screen.ModScreens;
 import com.fantasy.end.registry.ModBlocks;
@@ -53,6 +54,9 @@ public class FantasyTheEndClient implements ClientModInitializer {
 
         // 注册末影人背包屏幕
         ModScreens.init();
+
+        // 注册末影人背包按钮相关网络接收
+        EnderManNetworkingClient.init();
 
         FantasyTheEnd.LOGGER.info("[幻想:末地] 客户端初始化完成。");
     }

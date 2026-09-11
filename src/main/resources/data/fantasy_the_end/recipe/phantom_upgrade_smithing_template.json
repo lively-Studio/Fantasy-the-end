@@ -7,15 +7,15 @@
     "SES"
   ],
   "key": {
-    "S": {
-      "item": "fantasy_the_end:ender_stone"
-    },
-    "P": {
-      "item": "fantasy_the_end:phantom_stone"
-    },
-    "E": {
-      "item": "minecraft:paper"
-    }
+    "S": [
+      "fantasy_the_end:ender_stone"
+    ],
+    "P": [
+      "fantasy_the_end:phantom_stone"
+    ],
+    "E": [
+      "minecraft:paper"
+    ]
   },
   "result": {
     "count": 2,

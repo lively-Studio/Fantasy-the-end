@@ -7,15 +7,15 @@
     "SPS"
   ],
   "key": {
-    "S": {
-      "item": "fantasy_the_end:phantom_stone"
-    },
-    "E": {
-      "item": "fantasy_the_end:ender_stone"
-    },
-    "P": {
-      "item": "minecraft:paper"
-    }
+    "S": [
+      "fantasy_the_end:phantom_stone"
+    ],
+    "E": [
+      "fantasy_the_end:ender_stone"
+    ],
+    "P": [
+      "minecraft:paper"
+    ]
   },
   "result": {
     "count": 2,

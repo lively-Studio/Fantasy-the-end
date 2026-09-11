@@ -16,44 +16,39 @@
  */
 package com.fantasy.end.client.entity.renderer;
 
-import com.fantasy.end.FantasyTheEnd;
-import com.fantasy.end.client.entity.model.TameableEnderManEntityModel;
 import com.fantasy.end.entity.TameableEnderManEntity;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.EndermanEntityRenderer;
-import net.minecraft.client.render.entity.feature.EndermanBlockFeatureRenderer;
 import net.minecraft.client.render.entity.state.EndermanEntityRenderState;
 import net.minecraft.entity.mob.EndermanEntity;
 import net.minecraft.util.Identifier;
 
 /**
  * 可驯服末影人渲染器
- * 复用原版末影人渲染逻辑，替换纹理
+ * 完全复用原版末影人模型与纹理（外观与原版一致）
+ * 仅驯服后抑制愤怒（眼睛不变红）状态
  */
 public class TameableEnderManEntityRenderer extends EndermanEntityRenderer {
 
-    private static final Identifier TEXTURE = Identifier.of(FantasyTheEnd.MOD_ID, "textures/entity/tameable_enderman/tameable_enderman.png");
-    private static final Identifier ANGRY_TEXTURE = Identifier.of(FantasyTheEnd.MOD_ID, "textures/entity/tameable_enderman/tameable_enderman_angry.png");
-
     public TameableEnderManEntityRenderer(EntityRendererFactory.Context context) {
         super(context);
-        // 替换模型为我们的模型
-        this.model = new TameableEnderManEntityModel(
-                context.getPart(ModEntityRenderers.TAMEABLE_ENDER_MAN_LAYER)
-        );
-        // 移除方块搬运特征渲染（驯服末影人默认不搬运方块）
-        this.features.removeIf(feature -> feature instanceof EndermanBlockFeatureRenderer);
+        // 继承 EndermanEntityRenderer 的原版 EndermanEntityModel 与
+        // 方块搬运特征、眼睛发光特征，不进行任何替换
     }
+
+    private static final Identifier TEXTURE =
+            Identifier.ofVanilla("textures/entity/enderman/enderman.png");
 
     @Override
     public Identifier getTexture(EndermanEntityRenderState state) {
-        return state.angry ? ANGRY_TEXTURE : TEXTURE;
+        // 使用原版末影人贴图
+        return TEXTURE;
     }
 
     @Override
     public void updateRenderState(EndermanEntity enderman, EndermanEntityRenderState state, float tickDelta) {
         super.updateRenderState(enderman, state, tickDelta);
-        // 驯服后不愤怒（眼睛不变红）
+        // 如果是可驯服末影人且已驯服，则不显示愤怒状态（眼睛不变红）
         if (enderman instanceof TameableEnderManEntity tameable && tameable.isTamed()) {
             state.angry = false;
         }

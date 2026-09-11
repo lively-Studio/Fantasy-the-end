@@ -1,0 +1,9 @@
+{
+  "model": {
+    "type": "special",
+    "base": "fantasy_the_end:item/ender_man_doll",
+    "model": {
+      "type": "fantasy_the_end:enderman_doll"
+    }
+  }
+}

@@ -181,7 +181,7 @@ public class EnderManScreenHandler extends ScreenHandler {
     @Override
     public boolean canUse(PlayerEntity player) {
         if (this.enderman == null) return true;
-        return this.enderman.isAlive() && this.enderman.distanceTo(player) <= 8.0f;
+        return this.enderman.isAlive();
     }
 
     public TameableEnderManEntity getEnderman() {
