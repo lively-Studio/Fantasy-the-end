@@ -23,7 +23,6 @@ import com.fantasy.end.registry.ModDecorativeBlocks;
 import com.fantasy.end.registry.ModEntities;
 import com.fantasy.end.registry.ModItemGroups;
 import com.fantasy.end.registry.ModItems;
-import com.fantasy.end.registry.ModPlants;
 import com.fantasy.end.registry.ModPotions;
 import com.fantasy.end.registry.ModRecipes;
 import com.fantasy.end.registry.ModScreenHandlers;
@@ -48,7 +47,6 @@ public class FantasyTheEnd implements ModInitializer {
         ModBlocks.init();
         ModItems.init();
         ModToolArmor.init();
-        ModPlants.init();
         ModDecorativeBlocks.init();
         ModItemGroups.register();
         ModRecipes.init();

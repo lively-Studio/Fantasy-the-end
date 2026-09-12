@@ -63,7 +63,7 @@ public final class ModPotions {
 
     public static void init() {
         FabricBrewingRecipeRegistryBuilder.BUILD.register(builder -> {
-            builder.registerPotionRecipe(Potions.AWKWARD, ModPlants.ENDER_FLOWER_ITEM, TELEPORT_POTION);
+            builder.registerPotionRecipe(Potions.AWKWARD, Items.CHORUS_FRUIT, TELEPORT_POTION);
             builder.registerPotionRecipe(TELEPORT_POTION, Items.REDSTONE, TELEPORT_POTION_LONG);
             builder.registerPotionRecipe(TELEPORT_POTION, Items.GLOWSTONE_DUST, TELEPORT_POTION_STRONG);
         });

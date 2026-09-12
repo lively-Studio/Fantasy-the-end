@@ -22,7 +22,6 @@ import com.fantasy.end.client.screen.BackpackScreen;
 import com.fantasy.end.client.screen.ModScreens;
 import com.fantasy.end.registry.ModBlocks;
 import com.fantasy.end.registry.ModDecorativeBlocks;
-import com.fantasy.end.registry.ModPlants;
 import com.fantasy.end.registry.ModScreenHandlers;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
@@ -36,11 +35,6 @@ public class FantasyTheEndClient implements ClientModInitializer {
         BlockRenderLayerMap.putBlock(ModBlocks.PHANTOM_DOOR, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(ModBlocks.ENDER_TRAPDOOR, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(ModBlocks.PHANTOM_TRAPDOOR, BlockRenderLayer.CUTOUT);
-
-        BlockRenderLayerMap.putBlock(ModPlants.ENDER_FLOWER, BlockRenderLayer.CUTOUT);
-        BlockRenderLayerMap.putBlock(ModPlants.PHANTOM_FLOWER, BlockRenderLayer.CUTOUT);
-        BlockRenderLayerMap.putBlock(ModPlants.CRYSTAL_GRASS, BlockRenderLayer.CUTOUT);
-        BlockRenderLayerMap.putBlock(ModPlants.ENDER_VINE, BlockRenderLayer.CUTOUT);
 
         BlockRenderLayerMap.putBlock(ModDecorativeBlocks.ENDER_STONE_BUTTON, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(ModDecorativeBlocks.PHANTOM_STONE_BUTTON, BlockRenderLayer.CUTOUT);

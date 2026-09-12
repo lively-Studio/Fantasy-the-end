@@ -60,10 +60,6 @@ public final class ModItemGroups {
                             entries.add(ModToolArmor.PHANTOM_CHESTPLATE);
                             entries.add(ModToolArmor.PHANTOM_LEGGINGS);
                             entries.add(ModToolArmor.PHANTOM_BOOTS);
-                            entries.add(ModPlants.ENDER_FLOWER_ITEM);
-                            entries.add(ModPlants.PHANTOM_FLOWER_ITEM);
-                            entries.add(ModPlants.CRYSTAL_GRASS_ITEM);
-                            entries.add(ModPlants.ENDER_VINE_ITEM);
                             entries.add(ModItems.ENDER_ORE);
                             entries.add(ModItems.PHANTOM_ORE);
                             entries.add(ModItems.ENDER_SLAB);
