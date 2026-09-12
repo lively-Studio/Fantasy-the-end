@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_21",
   "client": [
     "BackpackClickMixin",
+    "CreativeInventoryScreenEnderManButtonMixin",
     "HandledScreenAccessor",
     "InventoryScreenEnderManButtonMixin",
     "ScreenAccessor",
