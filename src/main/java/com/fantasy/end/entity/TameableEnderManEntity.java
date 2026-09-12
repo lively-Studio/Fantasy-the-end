@@ -19,6 +19,7 @@ package com.fantasy.end.entity;
 import com.fantasy.end.item.PurplePoppedChorusFruitItem;
 import com.fantasy.end.screen.EnderManScreenHandler;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityStatuses;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ItemEntity;
@@ -35,6 +36,7 @@ import net.minecraft.storage.WriteView;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
+import net.minecraft.particle.ParticleTypes;
 
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.Item;
@@ -133,6 +135,30 @@ public class TameableEnderManEntity extends EndermanEntity implements NamedScree
             this.setDespawnCounter(0);
             LOGGER.info("[幻想:末地] 末影人已被驯服, 实体ID: {}", this.getId());
         }
+    }
+
+    /**
+     * 驯服成功爱心粒子（状态码 18, ADD_BREEDING_PARTICLES）。
+     * 原版爱心只在 AnimalEntity.handleStatus 处理，而末影人是 HostileEntity 链，
+     * 不会经过 AnimalEntity，因此这里复刻同样的爱心生成逻辑。
+     */
+    @Override
+    public void handleStatus(byte status) {
+        if (status == EntityStatuses.ADD_BREEDING_PARTICLES && this.getEntityWorld().isClient()) {
+            for (int i = 0; i < 7; i++) {
+                double vx = this.getRandom().nextGaussian() * 0.02D;
+                double vy = this.getRandom().nextGaussian() * 0.02D;
+                double vz = this.getRandom().nextGaussian() * 0.02D;
+                this.getEntityWorld().addParticleClient(
+                        ParticleTypes.HEART,
+                        this.getParticleX(1.0D),
+                        this.getRandomBodyY() + 0.5D,
+                        this.getParticleZ(1.0D),
+                        vx, vy, vz);
+            }
+            return;
+        }
+        super.handleStatus(status);
     }
 
     @Nullable
