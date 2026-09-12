@@ -111,7 +111,7 @@ public class TameableEnderManEntity extends EndermanEntity implements NamedScree
     protected void initGoals() {
         this.goalSelector.add(0, new SwimGoal(this));
         this.goalSelector.add(1, new MeleeAttackGoal(this, 1.0, false));
-        this.goalSelector.add(2, new WanderAroundFarGoal(this, 1.0));
+        this.goalSelector.add(2, new FollowOwnerGoal(this, 1.3, 8.0f, 32.0f));
         this.goalSelector.add(3, new LookAtEntityGoal(this, PlayerEntity.class, 8.0f));
         this.goalSelector.add(4, new LookAroundGoal(this));
 
@@ -301,14 +301,18 @@ public class TameableEnderManEntity extends EndermanEntity implements NamedScree
 
         if (!this.isTamed() || world.isClient()) return;
 
+        // 只处理已驯服且已绑定主人的末影人
+        PlayerEntity owner = this.getOwner();
+        if (owner == null) return;
+
         // 降低捡拾冷却
         if (this.itemPickupCooldown > 0) {
             this.itemPickupCooldown--;
             return;
         }
 
-        // 捡拾周围的掉落物
-        Box box = this.getBoundingBox().expand(3.0, 1.0, 3.0);
+        // 捡拾主人周围 8 格内的掉落物（可能是玩家掉落的）
+        Box box = owner.getBoundingBox().expand(8.0, 8.0, 8.0);
         List<ItemEntity> items = world.getEntitiesByClass(
                 ItemEntity.class, box, itemEntity -> {
                     if (itemEntity == null || !itemEntity.isAlive()) return false;
@@ -511,6 +515,60 @@ public class TameableEnderManEntity extends EndermanEntity implements NamedScree
         public void start() {
             this.enderman.setTarget(this.target);
             super.start();
+        }
+    }
+
+    /**
+     * 已驯服末影人跟随主人行走，离得太远则直接传送到主人身旁。
+     */
+    static class FollowOwnerGoal extends Goal {
+        private final TameableEnderManEntity enderman;
+        private final double speed;
+        private final float minDistanceSquared;
+        private final float maxDistanceSquared;
+
+        public FollowOwnerGoal(TameableEnderManEntity enderman, double speed, float minDistance, float maxDistance) {
+            this.enderman = enderman;
+            this.speed = speed;
+            this.minDistanceSquared = minDistance * minDistance;
+            this.maxDistanceSquared = maxDistance * maxDistance;
+            this.setControls(EnumSet.of(Control.MOVE, Control.LOOK));
+        }
+
+        @Override
+        public boolean canStart() {
+            if (!this.enderman.isTamed()) return false;
+            PlayerEntity owner = this.enderman.getOwner();
+            if (owner == null) return false;
+            return this.enderman.squaredDistanceTo(owner) > this.minDistanceSquared;
+        }
+
+        @Override
+        public boolean shouldContinue() {
+            if (!this.enderman.isTamed()) return false;
+            PlayerEntity owner = this.enderman.getOwner();
+            if (owner == null) return false;
+            return this.enderman.squaredDistanceTo(owner) > this.minDistanceSquared;
+        }
+
+        @Override
+        public void start() {
+            this.enderman.getNavigation().stop();
+        }
+
+        @Override
+        public void tick() {
+            if (this.enderman.getEntityWorld().isClient()) return;
+            PlayerEntity owner = this.enderman.getOwner();
+            if (owner == null) return;
+            double dist = this.enderman.squaredDistanceTo(owner);
+            if (dist > this.maxDistanceSquared) {
+                // 离主人太远：直接传送到主人身旁
+                this.enderman.requestTeleport(owner.getX(), owner.getY(), owner.getZ());
+                this.enderman.getNavigation().stop();
+            } else {
+                this.enderman.getNavigation().startMovingTo(owner, this.speed);
+            }
         }
     }
 
