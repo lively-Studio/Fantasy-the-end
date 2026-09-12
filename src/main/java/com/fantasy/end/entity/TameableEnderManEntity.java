@@ -209,6 +209,11 @@ public class TameableEnderManEntity extends EndermanEntity implements NamedScree
         LOGGER.info("[幻想:末地] interactMob 被调用, 手持: {}, 已驯服: {}, 实体ID: {}",
                 stack.isEmpty() ? "空手" : stack.getItem().toString(), this.isTamed(), this.getId());
 
+        // 命名牌：放行给原版逻辑，以便用命名牌给末影人命名
+        if (stack.isOf(Items.NAME_TAG)) {
+            return super.interactMob(player, hand);
+        }
+
         if (!this.isTamed()) {
             // 未驯服：使用原版紫松果(popped)驯服；生的紫颂果、模组紫松果也同样有效
             Item item = stack.getItem();
@@ -399,8 +404,9 @@ public class TameableEnderManEntity extends EndermanEntity implements NamedScree
 
     @Override
     public Text getDisplayName() {
-        // 使用原版末影人的名称"末影人/Enderman"
-        return this.getType().getName();
+        // 有命名牌自定义名时优先返回，否则返回原版末影人类型名
+        Text custom = this.getCustomName();
+        return custom != null ? custom : this.getType().getName();
     }
 
     public Text getTitle() {

@@ -17,7 +17,7 @@
 package com.fantasy.end;
 
 import com.fantasy.end.network.BackpackNetworking;
-import com.fantasy.end.network.EnderManNetworking;
+import com.fantasy.end.network.EnderManMobProvider;
 import com.fantasy.end.registry.ModBlocks;
 import com.fantasy.end.registry.ModDecorativeBlocks;
 import com.fantasy.end.registry.ModEntities;
@@ -53,7 +53,7 @@ public class FantasyTheEnd implements ModInitializer {
         ModPotions.init();
         ModScreenHandlers.init();
         BackpackNetworking.init();
-        EnderManNetworking.init();
+        EnderManMobProvider.init();
 
         ServerTickEvents.END_SERVER_TICK.register(new EnderPortalHandler());
         EnderTeleportHandler.register();
