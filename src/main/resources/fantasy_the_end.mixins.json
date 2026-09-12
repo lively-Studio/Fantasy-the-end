@@ -6,7 +6,8 @@
   "mixins": [
     "EnderPearlItemMixin",
     "EntityTypeCreateMixin",
-    "EndSpikeFeatureMixin"
+    "EndSpikeFeatureMixin",
+    "EndPlatformFeatureMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -21,6 +21,7 @@ import com.fantasy.end.network.EnderManMobProvider;
 import com.fantasy.end.registry.ModBlocks;
 import com.fantasy.end.registry.ModDecorativeBlocks;
 import com.fantasy.end.registry.ModEntities;
+import com.fantasy.end.registry.ModFeatures;
 import com.fantasy.end.registry.ModItemGroups;
 import com.fantasy.end.registry.ModItems;
 import com.fantasy.end.registry.ModPotions;
@@ -44,6 +45,7 @@ public class FantasyTheEnd implements ModInitializer {
     public void onInitialize() {
         ModStatusEffects.init();
         ModEntities.init();
+        ModFeatures.register();
         ModBlocks.init();
         ModItems.init();
         ModToolArmor.init();

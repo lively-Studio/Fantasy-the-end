@@ -100,6 +100,16 @@ src/
         └── fantasy_the_end.client.mixins.json
 ```
 
+## 致谢 (Credits)
+
+末地维度改版（主岛结构、黑曜石柱/水晶塔、地形点缀）的生成设计思路参考了开源模组 [BetterEnd](https://github.com/quiqueck/BetterEnd)（MIT 协议）。此外，本项目使用了以下开源成果，在此一并致谢：
+
+- **BetterEnd** — 末地改版的生成与美术设计参考（MIT）
+- **Fabric API / Fabric Loom** — 模组开发工具链
+- **Minecraft 社区 / Yarn Mappings** — 开发依赖
+
+需要说明的是，本模组是独立创作，并非基于 BetterEnd 的改造；仅借鉴了其中部分末地改版的生成与美学思路。
+
 ## 许可证
 
 本项目基于 [GPL-3.0](LICENSE) 许可证开源。
