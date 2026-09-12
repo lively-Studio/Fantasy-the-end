@@ -11,7 +11,6 @@ base {
 }
 
 repositories {
-    mavenLocal()
     maven {
         name = 'AliyunPublic'
         url = 'https://maven.aliyun.com/repository/public'
@@ -41,7 +40,8 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
     // 依赖本地 fantasy_mob 库模组（Fantasy: Mob / GUIforMob）
-    modImplementation "com.fantasy.mob:fantasy-mob:${project.mob_library_version}"
+    // 库产物提交在本工程 libs 目录下，便于 CI(无 mavenLocal) 也能构建
+    modImplementation fileTree(dir: "libs", include: "*.jar")
 }
 
 processResources {

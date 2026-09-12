@@ -22,6 +22,7 @@ classes/
 run/
 *.jar
 !gradle/wrapper/gradle-wrapper.jar
+!libs/*.jar
 
 # 图像工程文件（仅保留导出的 PNG）
 *.xcf
