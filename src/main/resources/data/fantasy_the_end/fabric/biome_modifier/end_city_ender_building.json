@@ -1,7 +1,0 @@
-{
-  "type": "fabric:add_structures",
-  "biomes": ["minecraft:end_highlands", "minecraft:end_midlands", "minecraft:small_end_islands"],
-  "structures": [
-    "fantasy_the_end:end_city_ender_building"
-  ]
-}
