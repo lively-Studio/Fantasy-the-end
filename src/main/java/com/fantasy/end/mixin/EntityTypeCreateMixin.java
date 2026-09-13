@@ -17,10 +17,10 @@
 package com.fantasy.end.mixin;
 
 import com.fantasy.end.entity.TameableEnderManEntity;
+import com.fantasy.end.registry.ModEntities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.mob.EndermanEntity;
 import net.minecraft.world.World;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,39 +30,33 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /**
- * 拦截 EntityType 中的实体创建方法。
- * 在 1.21.11 中，create(World, SpawnReason) 是所有实体创建的底层入口：
- * 6 参数版 create(ServerWorld, Consumer, BlockPos, SpawnReason, boolean, boolean) 与
- * NBT 加载 (getEntityFromData) 最终都调用它。
- * 在此将原版末影人替换为可驯服末影人(TameableEnderManEntity)。
+ * 拦截 EntityType.create(World, SpawnReason)，
+ * 把原版末影人替换为可驯服的 TameableEnderManEntity。
  *
- * 覆盖所有创建路径：
- * - 自然生成 (MobSpawnerLogic → 6参数 create → 2参数 create)
- * - 刷怪蛋 (SpawnEggItem → create)
- * - 命令 (/summon → EntityType.summon → create)
- * - NBT加载 (getEntityFromData → create)
+ * 关键：必须用 ModEntities.TAMEABLE_ENDER_MAN 作为 EntityType，
+ * 不能用 EntityType.ENDERMAN。后者在 1.21.11 中缺少 TameableEnderManEntity
+ * 构造时依赖的字段，会导致 Entity 父类初始化 NPE。
  */
 @Mixin(EntityType.class)
 public abstract class EntityTypeCreateMixin {
 
     private static final Logger LOGGER = LoggerFactory.getLogger("FantasyTheEnd-EntityType");
 
-    /**
-     * 拦截 EntityType.create(World, SpawnReason) —— 1.21.11 中的底层创建入口。
-     * 注意第一个参数是 World（基类），不是 ServerWorld。
-     */
-    @SuppressWarnings("unchecked")
-    @Inject(method = "create(Lnet/minecraft/world/World;Lnet/minecraft/entity/SpawnReason;)Lnet/minecraft/entity/Entity;", at = @At("HEAD"), cancellable = true)
+    @Inject(
+            method = "create(Lnet/minecraft/world/World;Lnet/minecraft/entity/SpawnReason;)Lnet/minecraft/entity/Entity;",
+            at = @At("HEAD"),
+            cancellable = true
+    )
     private void fantasyTheEnd$onCreate(World world, SpawnReason reason, CallbackInfoReturnable<Entity> cir) {
         EntityType<?> type = (EntityType<?>) (Object) this;
         if (type == EntityType.ENDERMAN) {
             try {
-                Entity entity = new TameableEnderManEntity(
-                        (EntityType<? extends EndermanEntity>) (EntityType<?>) EntityType.ENDERMAN,
-                        world
-                );
-                cir.setReturnValue(entity);
-                LOGGER.debug("[幻想:末地] 末影人已替换为 TameableEnderManEntity (原因: {})", reason);
+                // 走标准 create 流程，用正确的 EntityType
+                Entity entity = ModEntities.TAMEABLE_ENDER_MAN.create(world, reason);
+                if (entity != null) {
+                    cir.setReturnValue(entity);
+                    LOGGER.debug("[幻想:末地] 末影人已替换为 TameableEnderManEntity (原因: {})", reason);
+                }
             } catch (Exception e) {
                 LOGGER.error("[幻想:末地] 替换末影人实体失败，保留原版。原因: {}", e.getMessage(), e);
             }
