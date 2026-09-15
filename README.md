@@ -4,7 +4,7 @@
 
 ## 简介
 
-**幻想:末地** 是一个 Minecraft 1.21.11 Fabric 模组，旨在为玩家提供原版未曾实现的末地维度扩展体验。模组新增了末影系列物品、方块、状态效果以及自定义结构生成，让末地探索更加丰富。
+**幻想:末地** 是一个 Minecraft Fabric 模组，支持 **1.21.x ~ 26.x** 整条版本线，旨在为玩家提供原版未曾实现的末地维度扩展体验。模组新增了末影系列物品、方块、状态效果以及自定义结构生成，让末地探索更加丰富。
 
 ## 功能特性
 
@@ -100,19 +100,52 @@ src/
         └── fantasy_the_end.client.mixins.json
 ```
 
-## 致谢 (Credits)
+## 多版本构建 (Multi-Version Build)
 
-末地维度改版（主岛结构、黑曜石柱/水晶塔、地形点缀）的生成设计思路参考了开源模组 [BetterEnd](https://github.com/quiqueck/BetterEnd)（MIT 协议）。此外，本项目使用了以下开源成果，在此一并致谢：
+本模组采用多版本 Gradle 工程，同一套共享代码（`common/`）分别构建出 1.21.x 与 26.x 两个版本的 jar：
 
-- **BetterEnd** — 末地改版的生成与美术设计参考（MIT）
+```
+Fantasy - The End/
+├── common/                 # 双版本共享源码（BetterEnd 移植代码在此）
+├── versions/
+│   ├── fabric-1.21.x/       # 1.21.x 专属源码 + 构建配置
+│   └── fabric-26.x/         # 26.x 专属源码 + 构建配置（含 BCLib / WorldWeaver）
+└── settings.gradle         # 挂载两个版本工程
+```
+
+各版本独立构建：
+
+```bash
+# 构建 1.21.x
+./gradlew :fabric-1.21.x:build
+# 构建 26.x（需 JDK 25+）
+./gradlew :fabric-26.x:build
+```
+
+- `common/` 中的代码由两版本工程一起编译，力求使用纯 Fabric API / 原版接口以保证双版本通用；
+- 版本差异（API、Mixin 目标等）放在对应 `versions/<ver>/src` 中；
+- 26.x 线依赖 BetterX 的 **BCLib / WorldWeaver**（BetterEnd 的基础库）。
+
+> 注：26.x 的 `yarn_mappings` 等版本号需在 [fabricmc.net/versions](https://fabricmc.net/versions.html) 核对实际值。
+
+## 衍生声明与致谢 (Derivative Notice & Credits)
+
+**Fantasy: The End 是开源模组 [BetterEnd](https://github.com/quiqueck/BetterEnd)（MIT 协议，Copyright © 2020 paulevsGitch）的二次开发（衍生作品）。** 我们在 BetterEnd 的末地维度改版之上进行移植与再开发，将其生物群系、主岛结构、黑曜石柱 / 水晶塔、方块 / 矿石 / 装备、怪物、注入仪式等功能整合进本模组。
+
+BetterEnd 以 MIT 许可证发布，我们在复用其代码时保留原有版权声明与许可证头，并在此致谢原作者与贡献者：
+
+- **BetterEnd**（MIT）— 本模组所基于的衍生来源，末地维度改版的核心实现与美术设计
+- **BCLib / WorldWeaver（BetterX）** — BetterEnd 所依赖的基础库
 - **Fabric API / Fabric Loom** — 模组开发工具链
 - **Minecraft 社区 / Yarn Mappings** — 开发依赖
 
-需要说明的是，本模组是独立创作，并非基于 BetterEnd 的改造；仅借鉴了其中部分末地改版的生成与美学思路。
+> 说明：本模组复用 BetterEnd 的**代码**（MIT 许可），美术资源（纹理 / 模型）由本模组自行生成，未直接采用 BetterEnd 的 CC BY-NC-SA 资源，以避免非商业（NC）许可限制。
+
+本模组自身同样以 MIT 许可证发布，详见 [LICENSE](LICENSE)。
 
 ## 许可证
 
-本项目基于 [GPL-3.0](LICENSE) 许可证开源。
+本项目基于 [MIT](LICENSE) 许可证开源。
 
 ## 链接
 
