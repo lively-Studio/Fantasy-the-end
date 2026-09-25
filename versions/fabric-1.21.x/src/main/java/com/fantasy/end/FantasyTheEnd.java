@@ -22,24 +22,8 @@
 
 package com.fantasy.end;
 
-import com.fantasy.end.network.BackpackNetworking;
-import com.fantasy.end.network.EnderManMobProvider;
-import com.fantasy.end.registry.ModBlocks;
-import com.fantasy.end.registry.ModDecorativeBlocks;
-import com.fantasy.end.registry.ModEntities;
 import com.fantasy.end.registry.ModFeatures;
-import com.fantasy.end.registry.ModItemGroups;
-import com.fantasy.end.registry.ModItems;
-import com.fantasy.end.registry.ModPotions;
-import com.fantasy.end.registry.ModRecipes;
-import com.fantasy.end.registry.ModScreenHandlers;
-import com.fantasy.end.registry.ModStatusEffects;
-import com.fantasy.end.registry.ModToolArmor;
-import com.fantasy.end.event.EnderPortalHandler;
-import com.fantasy.end.handler.EnderTeleportHandler;
-import com.fantasy.end.handler.MeteorShowerHandler;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -49,23 +33,7 @@ public class FantasyTheEnd implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        ModStatusEffects.init();
-        ModEntities.init();
         ModFeatures.register();
-        ModBlocks.init();
-        ModItems.init();
-        ModToolArmor.init();
-        ModDecorativeBlocks.init();
-        ModItemGroups.register();
-        ModRecipes.init();
-        ModPotions.init();
-        ModScreenHandlers.init();
-        BackpackNetworking.init();
-        EnderManMobProvider.init();
-
-        ServerTickEvents.END_SERVER_TICK.register(new EnderPortalHandler());
-        EnderTeleportHandler.register();
-        MeteorShowerHandler.register();
 
         LOGGER.info("[幻想:末地] 模组初始化完成——末地的新篇章即将开启。");
     }

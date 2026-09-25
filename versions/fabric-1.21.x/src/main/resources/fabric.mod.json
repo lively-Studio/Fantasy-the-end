@@ -24,18 +24,13 @@
     ]
   },
   "mixins": [
-    "fantasy_the_end.mixins.json",
-    {
-      "config": "fantasy_the_end.client.mixins.json",
-      "environment": "client"
-    }
+    "fantasy_the_end.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.18.4",
     "minecraft": "~1.21.11",
     "java": ">=21",
-    "fabric-api": "*",
-    "fantasy_mob": "*"
+    "fabric-api": "*"
   },
   "suggests": {
     "modmenu": "*"

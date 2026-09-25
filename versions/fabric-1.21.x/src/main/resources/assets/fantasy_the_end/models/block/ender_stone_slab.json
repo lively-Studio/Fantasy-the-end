@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "fantasy_the_end:block/ender_stone",
-    "side": "fantasy_the_end:block/ender_stone",
-    "top": "fantasy_the_end:block/ender_stone"
-  }
-}

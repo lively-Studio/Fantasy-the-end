@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "fantasy_the_end:block/phantom_ore",
-    "side": "fantasy_the_end:block/phantom_ore",
-    "top": "fantasy_the_end:block/phantom_ore"
-  }
-}

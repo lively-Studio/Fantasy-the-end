@@ -1,7 +1,0 @@
-{
-  "type": "minecraft:smithing_transform",
-  "template": ["fantasy_the_end:phantom_upgrade_smithing_template"],
-  "base": ["fantasy_the_end:ender_sword"],
-  "addition": ["fantasy_the_end:phantom_stone"],
-  "result": {"id": "fantasy_the_end:phantom_sword"}
-}

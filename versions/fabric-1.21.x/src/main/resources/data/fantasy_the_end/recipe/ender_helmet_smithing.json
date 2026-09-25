@@ -1,7 +1,0 @@
-{
-  "type": "minecraft:smithing_transform",
-  "template": ["fantasy_the_end:ender_upgrade_smithing_template"],
-  "base": ["minecraft:diamond_helmet"],
-  "addition": ["fantasy_the_end:ender_stone"],
-  "result": {"id": "fantasy_the_end:ender_helmet"}
-}
